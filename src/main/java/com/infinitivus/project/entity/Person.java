@@ -3,7 +3,6 @@ package com.infinitivus.project.entity;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 
-
 @Entity
 @Table(name="person")
 public class Person {
@@ -33,7 +32,7 @@ public class Person {
   //  @Pattern(regexp="^((0?[1-9]|[12][0-9]|3[01])\\.(0?[1-9]|1[012])\\.((19|20)\\d\\d))?$", message ="Error! Enter the sample data")
     private String birthday;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval=true)
     @JoinColumn(name="mobile_home_id")
     private MobileHome mobileHome;
 
@@ -113,7 +112,6 @@ public class Person {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
                 ", birthday='" + birthday + '\'' +
-                ", mobileHome=" + mobileHome +
                 '}';
     }
 }

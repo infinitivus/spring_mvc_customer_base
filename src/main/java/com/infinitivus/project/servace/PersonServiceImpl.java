@@ -25,8 +25,8 @@ public class PersonServiceImpl implements IPersonService {
 
     @Override
     @Transactional
-    public void savePerson(Person person, MobileHome mobileHome,List<RepairWork> repairWorkList) {
-        iPersonDAO.savePerson(person, mobileHome,repairWorkList);
+    public void savePerson(Person person) {
+        iPersonDAO.savePerson(person);
     }
 
     @Override

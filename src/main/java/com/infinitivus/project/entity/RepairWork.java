@@ -24,32 +24,16 @@ public class RepairWork {
     @Column(name = "date")
     private String date;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "home_id")
-    private MobileHome mobileHome;
+    private MobileHome mobileHomeRepair;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "parts_work", joinColumns = @JoinColumn(name = "repair_work_id"),
             inverseJoinColumns = @JoinColumn(name = "spare_parts_id"))
     private List<SpareParts> sparePartsList;
 
     public RepairWork() {
-    }
-
-    public RepairWork(String nameTheWork, String master, long costWork, String date) {
-        this.nameTheWork = nameTheWork;
-        this.master = master;
-        this.costWork = costWork;
-        this.date = date;
-
-    }
-
-    public void addSparePartsToRepairWork(SpareParts spareParts) {
-        if (sparePartsList == null) {
-            sparePartsList = new ArrayList<>();
-        }
-        sparePartsList.add(spareParts);
-
     }
 
     public int getId() {
@@ -68,6 +52,14 @@ public class RepairWork {
         this.nameTheWork = nameTheWork;
     }
 
+    public String getMaster() {
+        return master;
+    }
+
+    public void setMaster(String master) {
+        this.master = master;
+    }
+
     public long getCostWork() {
         return costWork;
     }
@@ -76,20 +68,20 @@ public class RepairWork {
         this.costWork = costWork;
     }
 
-    public List<SpareParts> getSpareParts() {
-        return sparePartsList;
+    public String getDate() {
+        return date;
     }
 
-    public void setSpareParts(List<SpareParts> spareParts) {
-        this.sparePartsList = spareParts;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public MobileHome getMobileHome() {
-        return mobileHome;
+    public MobileHome getMobileHomeRepair() {
+        return mobileHomeRepair;
     }
 
-    public void setMobileHome(MobileHome mobileHome) {
-        this.mobileHome = mobileHome;
+    public void setMobileHomeRepair(MobileHome mobileHomeRepair) {
+        this.mobileHomeRepair = mobileHomeRepair;
     }
 
     public List<SpareParts> getSparePartsList() {
@@ -100,21 +92,29 @@ public class RepairWork {
         this.sparePartsList = sparePartsList;
     }
 
-    public String getMaster() {return master;}
+    public RepairWork(String nameTheWork, String master, long costWork, String date) {
+        this.nameTheWork = nameTheWork;
+        this.master = master;
+        this.costWork = costWork;
+        this.date = date;
 
-    public void setMaster(String master) {this.master = master;}
+    }
 
-    public String getDate() {return date;}
-
-    public void setDate(String date) {this.date = date;}
+    public void addSparePartsToRepairWork(SpareParts spareParts) {
+        if (sparePartsList == null) {
+            sparePartsList = new ArrayList<>();
+        }
+        sparePartsList.add(spareParts);
+    }
 
     @Override
     public String toString() {
         return "RepairWork{" +
                 "id=" + id +
                 ", nameTheWork='" + nameTheWork + '\'' +
+                ", master='" + master + '\'' +
                 ", costWork=" + costWork +
-                ", spareParts=" + sparePartsList +
+                ", date='" + date + '\'' +
                 '}';
     }
 }

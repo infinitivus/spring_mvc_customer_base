@@ -19,14 +19,24 @@
     <c:param name="infoPersId" value="${pers.id}"/>
 </c:url>
 
-<input type="button" value="Update"
-       onclick="window.location.href='${updateButton}'"/>
+<c:url var="backToList" value="/"/>
 
-<input type="button" value="Delete"
-       onclick="window.location.href='${deleteButton}'"/>
-
-<%--Создать кнопку возвращения к общему списку клиентов--%>
-
+<table align="center" width="90%" >
+    <tr>
+        <td align="left"><input type="button" value="<- Back to the list"
+                   onclick="window.location.href='${backToList}'"/></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td align="right"><input type="button" value="Update"
+                   onclick="window.location.href='${updateButton}'"/></td>
+        <td align="right"><input type="button" value="Delete"
+                   onclick="window.location.href='${deleteButton}'"/></td>
+    </tr>
+</table>
 <br>
 <table align="center" width="90%" border="1">
     <h3 align="center">Информация о клиенте</h3>
@@ -61,12 +71,12 @@
 </tr>
 
 <tr>
-    <td align="center">${home.type}</td>
-    <td align="center">${home.brand}</td>
-    <td align="center">${home.model}</td>
-    <td align="center">${home.vin}</td>
-    <td align="center">${home.yearOfRelease}</td>
-    <td align="center">${home.licensePlate}</td>
+    <td align="center">${pers.mobileHome.type}</td>
+    <td align="center">${pers.mobileHome.brand}</td>
+    <td align="center">${pers.mobileHome.model}</td>
+    <td align="center">${pers.mobileHome.vin}</td>
+    <td align="center">${pers.mobileHome.yearOfRelease}</td>
+    <td align="center">${pers.mobileHome.licensePlate}</td>
 </tr>
 </table>
 
@@ -78,24 +88,12 @@
         <th>Cost the work</th>
         <th>Date</th>
     </tr>
-    <c:forEach var="repair" items="${work}">
-
-<%--    <c:url var="fullInfoButton" value="/fullInfoPerson">--%>
-<%--        <c:param name="infoPersId" value="${pers.id}"/>--%>
-<%--    </c:url>--%>
-
+    <c:forEach var="repair" items="${pers.mobileHome.repairWorkList}">
     <tr>
         <td align="center">${repair.nameTheWork}</td>
         <td align="center">${repair.master}</td>
         <td align="center">${repair.costWork}</td>
         <td align="center">${repair.date}</td>
-
-
-<%--        <td align="center">--%>
-<%--            <input type="button" value="See"--%>
-<%--                   onclick="window.location.href='${fullInfoButton}'"/>--%>
-
-
     </tr>
     </c:forEach>
 </table>

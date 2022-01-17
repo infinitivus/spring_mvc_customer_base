@@ -20,97 +20,76 @@ public class MyController {
     private IPersonService iPersonService;
 
 //    @RequestMapping("/")
-//    public String verificationExistenceSchema(){
-//        boolean verification=iPersonService.verificationSchema();
-//        if(verification){
-//            return "input_password";
+//    public String verification() {
+//        if (iPersonService.verificationSchema()) {
+//            return "redirect:/showAllPerson";
+//        } else {
+//            return "setting_page";
 //        }
-//        return "initial_settings";
 //    }
 
-    @RequestMapping("/")
-    public String showAllPerson(Model model) { // Получение и вывод на экран всех клиентов
-        List<Person> allPerson = iPersonService.allPerson();
-        model.addAttribute("allPers", allPerson);
-        return "show_all_person";
-    }
+        @RequestMapping("/")
+        public String showAllPerson (Model model){
+            List<Person> allPerson = iPersonService.allPerson();
+            model.addAttribute("allPers", allPerson);
+            return "show_all_person";
+        }
 
-    @RequestMapping("/addNewPersonData") // Создание нового клиента и вывод таблицы для заполнения информации
-    public String addNewPersonData(Model model) {
-        Person person = new Person();
-        model.addAttribute("person", person);
-        MobileHome mobileHome = new MobileHome();
-        model.addAttribute("mobileHome", mobileHome);
-        RepairWork repairWork = new RepairWork();
-        model.addAttribute("repair", repairWork);
-        return "add_new_person_data";
-    }
-
-    @RequestMapping("/savePersonData")
-    // запись информации о новом клиенте в базу и возврат стартовой страницы с новой инфо
-//    public String savePerson(@Valid @ModelAttribute("person") Person person,
-//                             @ModelAttribute("mobileHome") MobileHome home,
-//                             @ModelAttribute("repairWork") RepairWork work,
-//                             BindingResult bindingResult) {
-    public String savePerson(@Valid @ModelAttribute("formAllEntity") FormAllEntity formAllEntity,
-                             BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "add_new_person_data";
-        } else {
+        @RequestMapping("/addNewPersonData")
+        public String addNewPersonData (Model model){
             Person person = new Person();
-            MobileHome mobileHome = person.getMobileHome();
-            List<RepairWork> repairWorkList = mobileHome.getRepairWorkList();
-            iPersonService.savePerson(person, mobileHome, repairWorkList);
-            return "redirect:/";
+            model.addAttribute("person", person);
+//        MobileHome mobileHome = new MobileHome();
+//        model.addAttribute("mobileHome", mobileHome);
+//        RepairWork repairWork = new RepairWork();
+//        model.addAttribute("repair", repairWork);
+            return "add_new_person_data";
+        }
+
+        @RequestMapping("/savePersonData")
+        public String savePerson (@Valid @ModelAttribute("person") Person person, BindingResult bindingResult){
+            if (bindingResult.hasErrors()) {
+                return "add_new_person_data";
+            } else {
+                System.out.println("Save Cont -> DAO : " + person + person.getMobileHome() + person.getMobileHome().getRepairWorkList());///////////////////////////////////////////
+                // при редактировании person - редактируется и записывается со своим id, а mobaleHome записывается новая в бд
+                iPersonService.savePerson(person);
+                return "redirect:/showAllPerson";
+            }
+        }
+
+        @RequestMapping("/fullInfoPerson")
+        public String fullInfoPerson ( @RequestParam("infoPersId") int id, Model model){
+            Person person = iPersonService.getPerson(id);
+            model.addAttribute("pers", person);
+            return "full_info_person";
+        }
+
+        @RequestMapping("/updateInfoPerson")
+        public String updatePerson ( @RequestParam("infoPersId") int id, Model model){
+            Person person = iPersonService.getPerson(id);
+            model.addAttribute("person", person);
+            System.out.println("Read Dao -> Cont : " + person + person.getMobileHome() + person.getMobileHome().getRepairWorkList());///////////////////////////////////////////
+            return "add_new_person_data";
+        }
+
+        @RequestMapping("/deleteInfoPerson")
+        public String deletePerson ( @RequestParam("infoPersId") int id){
+            iPersonService.deletePerson(id);
+            return "redirect:/showAllPerson";
+        }
+
+        @RequestMapping("/searchPerson")
+        public String searchPerson (@RequestParam("search") String searchLine, Model model){
+            List<Person> searchListPerson = iPersonService.searchPerson(searchLine);
+            model.addAttribute("allPers", searchListPerson);
+            return "show_all_person";
+        }
+
+        @RequestMapping("/sortPerson")
+        public String sortPerson (@RequestParam("select") String sortLine, Model model){
+            List<Person> sortListPerson = iPersonService.sortPerson(sortLine);
+            model.addAttribute("allPers", sortListPerson);
+            return "show_all_person";
         }
     }
-
-    @RequestMapping("/fullInfoPerson") // отдельный вывод полной информации о клиенте
-    public String fullInfoPerson(@RequestParam("infoPersId") int id, Model model) {
-        Person person = iPersonService.getPerson(id);
-        MobileHome mobileHome = person.getMobileHome();
-        List<RepairWork> repairWorksList = mobileHome.getRepairWorkList();
-
-        model.addAttribute("pers", person);
-        model.addAttribute("home", mobileHome);
-        model.addAttribute("work", repairWorksList);
-        return "full_info_person";
-    }
-
-    @RequestMapping("/updateInfoPerson") // исправление информации о клиенте
-    public String updatePerson(@RequestParam("infoPersId") int id, Model model) {
-        System.out.println("update info pers id " + id);////////////////////////////////////
-        Person person = iPersonService.getPerson(id);
-        MobileHome mobileHome = person.getMobileHome();
-        //   RepairWork repairWork=new RepairWork();
-        List<RepairWork> repairWorksList = mobileHome.getRepairWorkList(); ///////////////////////////////////
-        model.addAttribute("person", person);
-        model.addAttribute("home", mobileHome);
-        model.addAttribute("repair", repairWorksList);
-
-
-        System.out.println("Controller " + repairWorksList);//////////////////////////////////////////
-        //     System.out.println("Controller "+ sparePartsList);/////////////////////////////////////////
-        return "add_new_person_data";
-    }
-
-    @RequestMapping("/deleteInfoPerson") // удаление информации о клиенте ... не работает
-    public String deletePerson(@RequestParam("infoPersId") int id) {
-        iPersonService.deletePerson(id);
-        return "redirect:/";
-    }
-
-    @RequestMapping("/searchPerson")
-    public String searchPerson(@RequestParam("search") String searchLine, Model model) {
-        List<Person> searchListPerson = iPersonService.searchPerson(searchLine);
-        model.addAttribute("allPers", searchListPerson);
-        return "show_all_person";
-    }
-
-    @RequestMapping("/sortPerson")
-    public String sortPerson(@RequestParam("select") String sortLine, Model model) {
-        List<Person> sortListPerson = iPersonService.sortPerson(sortLine);
-        model.addAttribute("allPers", sortListPerson);
-        return "show_all_person";
-    }
-}

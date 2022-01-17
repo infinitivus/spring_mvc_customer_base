@@ -89,7 +89,6 @@ public class SpareParts {
                 ", nameSparePart='" + nameSparePart + '\'' +
                 ", costPart=" + costPart +
                 ", article='" + article + '\'' +
-                ", repairWork=" + repairWorkList +
                 '}';
     }
 }

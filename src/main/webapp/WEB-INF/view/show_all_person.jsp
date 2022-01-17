@@ -3,12 +3,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>show all person</title>
-
-
 <body>
 <br>
 <table align="center" width="90%"  >
@@ -16,7 +13,6 @@
         <td><input type="button" value="Add an entry" size="30"
                    onclick="window.location.href='addNewPersonData'"/>
         </td>
-
         <td>
            <form method="get" action="sortPerson" >
                <input type="submit" value="Sort by:"/>
@@ -29,7 +25,6 @@
                </label>
            </form>
         </td>
-
         <td align="right">
             <form method="get" action="searchPerson">
                 <label>
@@ -38,12 +33,9 @@
                 <input type="submit" value="Search"/>
             </form>
         </td>
-
     </tr>
 </table>
-
 <br>
-
 <table align="center" width="90%" border="1" >
     <h3 align="center" >Список клиентов компании</h3>
     <tr>
@@ -55,11 +47,9 @@
         <th>Full info</th>
     </tr>
     <c:forEach var="pers" items="${allPers}">
-
         <c:url var="fullInfoButton" value="/fullInfoPerson">
             <c:param name="infoPersId" value="${pers.id}"/>
         </c:url>
-
         <tr>
             <td align="center">${pers.surname}</td>
             <td align="center">${pers.name}</td>
@@ -69,11 +59,9 @@
             <td align="center">
                 <input type="button" value="See"
                        onclick="window.location.href='${fullInfoButton}'"/>
-
             </td>
         </tr>
     </c:forEach>
-
 </table>
 </body>
 </html>

@@ -44,7 +44,6 @@
                 <%--            <form:errors path="person.birthday"/>--%>
         </tr>
     </table>
-</form:form>
 
 <table align="center" width="90%">
     <h3 align="center">Информация о транспортном средстве</h3>
@@ -87,21 +86,13 @@
         <th>Cost the work</th>
         <th>Date</th>
     </tr>
-    // <c:forEach var="work" items="${repair}">
-
-    <%--    <c:url var="fullInfoButton" value="/fullInfoPerson">--%>
-    <%--        <c:param name="infoPersId" value="${pers.id}"/>--%>
-    <%--    </c:url>--%>
-
+    <c:forEach var="work" items="${mobileHome.repairWorkList}">
     <tr>
-        <td align="center"><form:input path="repairWork.nameTheWork"/></td>
-        <td align="center"><form:input path="repairWork.master"/></td>
-        <td align="center"><form:input path="repairWork.costWork"/></td>
-        <td align="center"><form:input path="repairWork.date"/></td>
-
-            <%--        <td align="center">--%>
-            <%--            <input type="button" value="See"--%>
-            <%--                   onclick="window.location.href='${fullInfoButton}'"/>--%>
+        <td align="center"><p>${work.nameTheWork}</p></td>
+<%--        <td align="center"><form:input ${w}/></td>--%>
+<%--        <td align="center"><form:input path="repairWork.master"/></td>--%>
+<%--        <td align="center"><form:input path="repairWork.costWork"/></td>--%>
+<%--        <td align="center"><form:input path="repairWork.date"/></td>--%>
 
     </tr>
 </c:forEach>

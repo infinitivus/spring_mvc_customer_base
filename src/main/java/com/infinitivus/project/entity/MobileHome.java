@@ -13,7 +13,7 @@ public class MobileHome {
     @Column(name = "id")
     private int id;
 
-    @Column(name="type")
+    @Column(name = "type")
     private String type;
 
     @Column(name = "brand")
@@ -31,15 +31,18 @@ public class MobileHome {
     @Column(name = "license_plate")
     private String licensePlate;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,mappedBy = "mobileHome")
+    @OneToOne(mappedBy = "mobileHome")
+    private Person homePerson;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "mobileHomeRepair")
     private List<RepairWork> repairWorkList;
 
 
     public MobileHome() {
     }
 
-    public MobileHome(String type,String brand, String model, String vin, String yearOfRelease, String licensePlate) {
-        this.type=type;
+    public MobileHome(String type, String brand, String model, String vin, String yearOfRelease, String licensePlate) {
+        this.type = type;
         this.brand = brand;
         this.model = model;
         this.vin = vin;
@@ -47,19 +50,29 @@ public class MobileHome {
         this.licensePlate = licensePlate;
     }
 
-    public RepairWork addRepairWorkToMobileHome(RepairWork repairWork){
+    public RepairWork addRepairWorkToMobileHome(RepairWork repairWork) {
         if (repairWorkList == null) {
-            repairWorkList=new ArrayList<>();
+            repairWorkList = new ArrayList<>();
         }
         repairWorkList.add(repairWork);
-        repairWork.setMobileHome(this);
+        repairWork.setMobileHomeRepair(this);
         return repairWork;
     }
 
-    public int getId() { return id; }
+    public int getId() {
+        return id;
+    }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getBrand() {
@@ -102,12 +115,12 @@ public class MobileHome {
         this.licensePlate = licensePlate;
     }
 
-    public String getType() {
-        return type;
+    public Person getHomePerson() {
+        return homePerson;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setHomePerson(Person homePerson) {
+        this.homePerson = homePerson;
     }
 
     public List<RepairWork> getRepairWorkList() {
@@ -128,7 +141,6 @@ public class MobileHome {
                 ", vin='" + vin + '\'' +
                 ", yearOfRelease='" + yearOfRelease + '\'' +
                 ", licensePlate='" + licensePlate + '\'' +
-                ", repairWorkList=" + repairWorkList +
                 '}';
     }
 }

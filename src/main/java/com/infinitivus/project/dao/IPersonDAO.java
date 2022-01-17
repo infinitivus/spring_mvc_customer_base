@@ -11,7 +11,7 @@ public interface IPersonDAO {
 
     public List<Person> getAllPerson();
 
-    public void savePerson(Person person, MobileHome mobileHome,List<RepairWork> repairWorkList);
+    public void savePerson(Person person);
 
     public Person getPerson(int id);
 
