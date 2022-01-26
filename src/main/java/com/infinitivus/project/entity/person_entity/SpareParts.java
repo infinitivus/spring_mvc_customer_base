@@ -1,11 +1,11 @@
-package com.infinitivus.project.entity;
+package com.infinitivus.project.entity.person_entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="spare_parts")
+@Table(name="spare_part")
 public class SpareParts {
     @Id
     @Column(name="id")

@@ -1,10 +1,7 @@
-package com.infinitivus.project.servace;
+package com.infinitivus.project.servace.person_servace;
 
-import com.infinitivus.project.dao.IPersonDAO;
-import com.infinitivus.project.entity.MobileHome;
-import com.infinitivus.project.entity.Person;
-import com.infinitivus.project.entity.RepairWork;
-import com.infinitivus.project.entity.SpareParts;
+import com.infinitivus.project.dao.person_dao.IPersonRepository;
+import com.infinitivus.project.entity.person_entity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,48 +12,42 @@ import java.util.List;
 public class PersonServiceImpl implements IPersonService {
 
     @Autowired
-    private IPersonDAO iPersonDAO;
+    private IPersonRepository iPersonRepository;
 
     @Override
     @Transactional
     public List<Person> allPerson() {
-        return iPersonDAO.getAllPerson();
+        return iPersonRepository.getAllPerson();
     }
 
     @Override
     @Transactional
     public void savePerson(Person person) {
-        iPersonDAO.savePerson(person);
+        iPersonRepository.savePerson(person);
     }
 
     @Override
     @Transactional
     public Person getPerson(int id) {
-        return iPersonDAO.getPerson(id);
+        return iPersonRepository.getPerson(id);
 
     }
 
     @Override
     @Transactional
     public void deletePerson(int id) {
-        iPersonDAO.deletePerson(id);
+        iPersonRepository.deletePerson(id);
     }
 
     @Override
     @Transactional
     public List<Person> searchPerson(String searchLine) {
-        return iPersonDAO.searchPerson(searchLine);
+        return iPersonRepository.searchPerson(searchLine);
     }
 
     @Override
     @Transactional
     public List<Person> sortPerson(String sortLine) {
-        return iPersonDAO.sortPerson(sortLine);
-    }
-
-    @Override
-    @Transactional
-    public boolean verificationSchema() {
-        return iPersonDAO.verificationSchema();
+        return iPersonRepository.sortPerson(sortLine);
     }
 }

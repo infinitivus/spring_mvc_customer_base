@@ -1,7 +1,6 @@
-package com.infinitivus.project.entity;
+package com.infinitivus.project.entity.person_entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="person")
