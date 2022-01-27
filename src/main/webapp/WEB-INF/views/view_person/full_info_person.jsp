@@ -12,7 +12,6 @@
 <body>
 <br>
 
-<h3>Person show</h3>
 <c:url var="updateButtonPerson" value="/updateInfoPerson">
     <c:param name="infoPersId" value="${pers.id}"/>
 </c:url>

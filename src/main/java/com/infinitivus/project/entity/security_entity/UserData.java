@@ -1,36 +1,37 @@
 package com.infinitivus.project.entity.security_entity;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
-import javax.validation.constraints.Size;
-import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "user_data")
-public class UserData  {
+public class UserData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "username")
     private String username;
 
+    @Column(nullable = false, length = 64)
     private String password;
 
     @Transient
     private String passwordConfirm;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "userdata_userrole", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<UserRole> roles;
+    private Set<UserRole> roles = new HashSet<>();
+
+    public void addRole(UserRole role) {
+        this.roles.add(role);
+    }
 
     public UserData() {
     }
-
 
     public Long getId() {
         return id;
@@ -71,4 +72,5 @@ public class UserData  {
     public void setRoles(Set<UserRole> roles) {
         this.roles = roles;
     }
+
 }

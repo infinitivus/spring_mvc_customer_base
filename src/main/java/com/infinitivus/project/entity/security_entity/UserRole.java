@@ -1,25 +1,25 @@
 package com.infinitivus.project.entity.security_entity;
 
-import org.springframework.security.core.GrantedAuthority;
-
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "user_role")
-public class UserRole  {
+public class UserRole {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 45)
     private String role;
-
-    private Set<UserData> users;
 
     public UserRole() {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public UserRole(String role) {
+        this.role = role;
+    }
+
     public Long getId() {
         return id;
     }
@@ -36,12 +36,8 @@ public class UserRole  {
         this.role = role;
     }
 
-    @ManyToMany(mappedBy = "roles")
-    public Set<UserData> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<UserData> users) {
-        this.users = users;
+    @Override
+    public String toString() {
+        return role;
     }
 }

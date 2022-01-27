@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>show all person</title>
+    <c:url var="AdminPanel" value="/adminPanel"/>
 <body>
 <br>
 <table align="center" width="90%"  >
@@ -13,6 +14,9 @@
         <td><input type="button" value="Add an entry" size="30"
                    onclick="window.location.href='addNewPersonData'"/>
         </td>
+
+        <td align="left"><input type="button" value="Admin Panel"
+                                onclick="window.location.href='${AdminPanel}'"/></td>
         <td>
            <form method="get" action="sortPerson" >
                <input type="submit" value="Sort by:"/>

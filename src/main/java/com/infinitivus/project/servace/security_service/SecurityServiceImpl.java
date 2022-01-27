@@ -2,6 +2,7 @@ package com.infinitivus.project.servace.security_service;
 
 
 import com.infinitivus.project.entity.security_entity.UserData;
+import com.infinitivus.project.entity.security_entity.UserRole;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
