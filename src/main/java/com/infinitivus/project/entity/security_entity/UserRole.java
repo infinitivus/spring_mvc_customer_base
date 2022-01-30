@@ -8,7 +8,7 @@ public class UserRole {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(nullable = false, length = 45)
     private String role;
@@ -16,16 +16,17 @@ public class UserRole {
     public UserRole() {
     }
 
-    public UserRole(String role) {
+    public UserRole(Integer id, String role) {
+        this.id = id;
         this.role = role;
     }
 
-    public Long getId() {
-        return id;
+    public UserRole(Integer id) {
+        this.id = id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public UserRole(String role) {
+        this.role = role;
     }
 
     public String getRole() {
@@ -34,6 +35,14 @@ public class UserRole {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override

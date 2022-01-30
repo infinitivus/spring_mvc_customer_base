@@ -1,8 +1,5 @@
 package com.infinitivus.project.servace.security_service;
 
-
-import com.infinitivus.project.entity.security_entity.UserData;
-import com.infinitivus.project.entity.security_entity.UserRole;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SecurityServiceImpl implements ISecurityService {
+
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -23,23 +21,12 @@ public class SecurityServiceImpl implements ISecurityService {
 
     private static final Logger logger = LoggerFactory.getLogger(SecurityServiceImpl.class);
 
-    @Override
-    public boolean verificationSchema() {
-        return false;
-    }
-
-    @Override
-    public void saveAdminForm(UserData user) {
-
-    }
-
-    @Override
+@Override
     public String findLoggedInUsername() {
         Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
         if (userDetails instanceof UserDetails) {
             return ((UserDetails) userDetails).getUsername();
         }
-
         return null;
     }
 
@@ -47,12 +34,10 @@ public class SecurityServiceImpl implements ISecurityService {
     public void autologin(String username, String password) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
-
         authenticationManager.authenticate(usernamePasswordAuthenticationToken);
-
         if (usernamePasswordAuthenticationToken.isAuthenticated()) {
             SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-            logger.debug(String.format("Auto login %s successfully!", username));
+           logger.debug(String.format("Auto login %s successfully!", username));
         }
     }
 }

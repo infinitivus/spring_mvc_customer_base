@@ -8,24 +8,24 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" \>
     <title>full info person</title>
+</head>
+
+    <c:url var="updateButtonPerson" value="/updateInfoPerson">
+        <c:param name="infoPersId" value="${pers.id}"/>
+    </c:url>
+
+    <c:url var="updateButtonRepair" value="/updateInfoRepair">
+        <c:param name="infoPersId" value="${pers.id}"/>
+    </c:url>
+
+    <c:url var="deleteButton" value="/deleteInfoPerson">
+        <c:param name="infoPersId" value="${pers.id}"/>
+    </c:url>
+
+    <c:url var="backToList" value="/"/>
 
 <body>
 <br>
-
-<c:url var="updateButtonPerson" value="/updateInfoPerson">
-    <c:param name="infoPersId" value="${pers.id}"/>
-</c:url>
-
-<c:url var="updateButtonRepair" value="/updateInfoRepair">
-    <c:param name="infoPersId" value="${pers.id}"/>
-</c:url>
-
-<c:url var="deleteButton" value="/deleteInfoPerson">
-    <c:param name="infoPersId" value="${pers.id}"/>
-</c:url>
-
-<c:url var="backToList" value="/"/>
-
 <table align="center" width="90%">
     <tr>
         <td align="left"><input type="button" value="<- Back to the list"
@@ -114,6 +114,5 @@
         </tr>
     </c:forEach>
 </table>
-
 </body>
 </html>

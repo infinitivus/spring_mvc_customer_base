@@ -21,16 +21,13 @@ public class UserData {
     @Transient
     private String passwordConfirm;
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "userdata_userrole", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<UserRole> roles = new HashSet<>();
 
     public void addRole(UserRole role) {
         this.roles.add(role);
-    }
-
-    public UserData() {
     }
 
     public Long getId() {
@@ -73,4 +70,14 @@ public class UserData {
         this.roles = roles;
     }
 
+    @Override
+    public String toString() {
+        return "UserData{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", passwordConfirm='" + passwordConfirm + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
 }

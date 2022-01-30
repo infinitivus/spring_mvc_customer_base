@@ -20,7 +20,7 @@ public class PersonController {
     @Autowired
     private IPersonService iPersonService;
 
-    @RequestMapping(value = {"/", "/showAllPerson"})
+    @RequestMapping(value = {"/showAllPerson"})
     public String showAllPerson(Model model) {
         List<Person> allPerson = iPersonService.allPerson();
         model.addAttribute("allPers", allPerson);
@@ -31,10 +31,6 @@ public class PersonController {
     public String addNewPersonData(Model model) {
         Person person = new Person();
         model.addAttribute("person", person);
-//        MobileHome mobileHome = new MobileHome();
-//        model.addAttribute("mobileHome", mobileHome);
-//        RepairWork repairWork = new RepairWork();
-//        model.addAttribute("repair", repairWork);
         return "view_person/add_new_person_data";
     }
 
