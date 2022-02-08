@@ -7,11 +7,13 @@ import java.util.List;
 
 public interface IUserService {
 
+    void createRoles();
+
+    boolean verificationSchema();
+
     void saveAdmin(UserData user);
 
     UserData findByUsername(String username);
-
-    void createRoles();
 
     List<UserData> listAllUser();
 
@@ -19,9 +21,7 @@ public interface IUserService {
 
     List<UserRole> listRoles();
 
-    void saveEditedUser(UserData user);
+    void saveUser(UserData user);
 
-    void saveNewUser(UserData user);
-
-     boolean verificationSchema();
+    public void encoder(UserData user);
 }

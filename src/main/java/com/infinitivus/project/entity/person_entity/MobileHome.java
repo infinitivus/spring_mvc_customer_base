@@ -1,8 +1,10 @@
 package com.infinitivus.project.entity.person_entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.validation.constraints.Pattern;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "mobile_home")
@@ -14,45 +16,52 @@ public class MobileHome {
     private int id;
 
     @Column(name = "type")
+//    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,15}$", message = "Error! Enter the sample data")
     private String type;
 
     @Column(name = "brand")
+//    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,15}$", message = "Error! Enter the sample data")
     private String brand;
 
     @Column(name = "model")
+//    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,15}$", message = "Error! Enter the sample data")
     private String model;
 
     @Column(name = "vin")
+//    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,20}$", message = "Error! Enter the sample data")
     private String vin;
 
     @Column(name = "year_of_release")
+//    @Pattern(regexp = "^[1-9][0-9]{3}$", message = "Error! Enter the sample data")
     private String yearOfRelease;
 
     @Column(name = "license_plate")
+//    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,15}$", message = "Error! Enter the sample data")
     private String licensePlate;
 
-    @OneToOne(mappedBy = "mobileHome")
+    @OneToOne(mappedBy = "mobileHome") ////////////////////
     private Person homePerson;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "mobileHomeRepair")
-    private List<RepairWork> repairWorkList;
-
+    @OneToMany(mappedBy = "mobileHomeRepair",fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    private Set<RepairWork> repairWorkList;
 
     public MobileHome() {
     }
 
-    public MobileHome(String type, String brand, String model, String vin, String yearOfRelease, String licensePlate) {
+    public MobileHome(int id, String type, String brand, String model, String vin, String yearOfRelease, String licensePlate,Person homePerson) {
+        this.id = id;
         this.type = type;
         this.brand = brand;
         this.model = model;
         this.vin = vin;
         this.yearOfRelease = yearOfRelease;
         this.licensePlate = licensePlate;
+        this.homePerson = homePerson;
     }
 
     public RepairWork addRepairWorkToMobileHome(RepairWork repairWork) {
         if (repairWorkList == null) {
-            repairWorkList = new ArrayList<>();
+            repairWorkList = new HashSet<>();
         }
         repairWorkList.add(repairWork);
         repairWork.setMobileHomeRepair(this);
@@ -123,24 +132,27 @@ public class MobileHome {
         this.homePerson = homePerson;
     }
 
-    public List<RepairWork> getRepairWorkList() {
+    public Set<RepairWork> getRepairWorkList() {
         return repairWorkList;
     }
 
-    public void setRepairWorkList(List<RepairWork> repairWorkList) {
+    public void setRepairWorkList(Set<RepairWork> repairWorkList) {
         this.repairWorkList = repairWorkList;
     }
 
-    @Override
-    public String toString() {
-        return "MobileHome{" +
-                "id=" + id +
-                ", type='" + type + '\'' +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", vin='" + vin + '\'' +
-                ", yearOfRelease='" + yearOfRelease + '\'' +
-                ", licensePlate='" + licensePlate + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "MobileHome{" +
+//                ", type='" + type + '\'' +
+//                ", brand='" + brand + '\'' +
+//                ", model='" + model + '\'' +
+//                ", vin='" + vin + '\'' +
+//                ", yearOfRelease='" + yearOfRelease + '\'' +
+//                ", licensePlate='" + licensePlate + '\'' +
+//                ", homePerson=" + homePerson +
+//                ", repairWorkList=" + repairWorkList +
+//                '}';
+//    }
+
+
 }

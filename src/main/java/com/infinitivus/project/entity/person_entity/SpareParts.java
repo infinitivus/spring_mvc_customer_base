@@ -3,6 +3,7 @@ package com.infinitivus.project.entity.person_entity;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name="spare_part")
@@ -10,7 +11,7 @@ public class SpareParts {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name="name_spare_part")
     private String nameSparePart;
@@ -21,9 +22,9 @@ public class SpareParts {
     @Column(name="article")
     private String article;
 
-    @ManyToMany(cascade=CascadeType.ALL)
-    @JoinTable(name="parts_work", joinColumns = @JoinColumn(name="spare_parts_id"),
-            inverseJoinColumns = @JoinColumn(name="repair_work_id"))
+    @ManyToMany(mappedBy = "sparePartsList")
+//    @JoinTable(name="parts_work", joinColumns = @JoinColumn(name="spare_parts_id"),
+//            inverseJoinColumns = @JoinColumn(name="repair_work_id"))
     private List<RepairWork> repairWorkList;
 
     public SpareParts() {
@@ -42,11 +43,11 @@ public class SpareParts {
         repairWorkList.add(repairWork);
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -83,12 +84,25 @@ public class SpareParts {
     }
 
     @Override
-    public String toString() {
-        return "SpareParts{" +
-                "id=" + id +
-                ", nameSparePart='" + nameSparePart + '\'' +
-                ", costPart=" + costPart +
-                ", article='" + article + '\'' +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SpareParts)) return false;
+        SpareParts that = (SpareParts) o;
+        return getCostPart() == that.getCostPart() && Objects.equals(getId(), that.getId()) && Objects.equals(getNameSparePart(), that.getNameSparePart()) && Objects.equals(getArticle(), that.getArticle()) && Objects.equals(getRepairWorkList(), that.getRepairWorkList());
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getNameSparePart(), getCostPart(), getArticle(), getRepairWorkList());
+    }
+
+//    @Override
+//    public String toString() {
+//        return "SpareParts{" +
+//                "id=" + id +
+//                ", nameSparePart='" + nameSparePart + '\'' +
+//                ", costPart=" + costPart +
+//                ", article='" + article + '\'' +
+//                '}';
+//    }
 }

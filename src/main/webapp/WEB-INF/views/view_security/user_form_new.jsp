@@ -12,7 +12,7 @@
 <c:url var="backToList" value="/adminPanel"/>
 <%--     delete user         --%>
 <body>
-<form:form action="saveNewUser" modelAttribute="addUser">
+<form:form action="saveNewUser" modelAttribute="userForm">
     <h3 align="center">Добавить информацию о пользователе</h3>
     <br>
     <td align="left"><input type="button" value="<- Back to the list"
@@ -23,16 +23,20 @@
         <tr>
             <th align="center">User name</th>
             <th align="center">Password</th>
+            <th align="center">Password confirm</th>
             <th align="center">Roles</th>
         </tr>
         <tr>
-            <td align="center"><form:input path="username"/></td>
+            <td align="center"><form:input path="username" /></td>
             <td align="center"><form:input path="password"/></td>
+            <td align="center"><form:input path="passwordConfirm"/></td>
             <td align="center">
-                <form:checkboxes path="roles" items="${role}" />
-<%--                ADMIN<form:checkbox path="roles" value="ROLE_ADMIN"/>--%>
-<%--                MANAGER<form:checkbox path="roles" value="ROLE_MANAGER"/>--%>
-<%--                MASTER<form:checkbox path="roles" value="ROLE_MASTER"/>--%>
+<%--                <form:checkboxes path="roles" items="${listRoles}" />--%>
+
+                ADMIN<form:checkbox path="roles" value="ROLE_ADMIN" id="1" />
+                MANAGER<form:checkbox path="roles" value="ROLE_MANAGER" id="2"/>
+                MASTER<form:checkbox path="roles" value="ROLE_MASTER" id="3"/>
+
             </td>
             <td align="center">
                 <input type="submit" value="Edit"

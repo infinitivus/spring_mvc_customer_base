@@ -1,7 +1,7 @@
-package com.infinitivus.project.controller;
+package com.infinitivus.project.controllers;
 
 import com.infinitivus.project.entity.person_entity.Person;
-import com.infinitivus.project.servace.person_servace.IPersonService;
+import com.infinitivus.project.servace.person_service.IPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +15,6 @@ import java.util.List;
 
 @Controller
 public class PersonController {
-
 
     @Autowired
     private IPersonService iPersonService;
@@ -34,17 +33,15 @@ public class PersonController {
         return "view_person/add_new_person_data";
     }
 
-    @RequestMapping("/savePersonData")
+    @RequestMapping("/savePersonData")///////////////////////////////
     public String savePerson(@Valid @ModelAttribute("person") Person person, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "view_person/add_new_person_data";
-        } else {
-//            System.out.println("Save Cont -> DAO : " + person + person.getMobileHome() + person.getMobileHome().getRepairWorkList());///////////////////////////////////////////
-            // при редактировании person - редактируется и записывается со своим id, а mobaleHome записывается новая в бд
+        }
+        System.out.println("cont"+person);
             iPersonService.savePerson(person);
             return "redirect:/showAllPerson";
         }
-    }
 
     @RequestMapping("/fullInfoPerson")
     public String fullInfoPerson(@RequestParam("infoPersId") int id, Model model) {
@@ -57,12 +54,6 @@ public class PersonController {
     public String updatePerson(@RequestParam("infoPersId") int id, Model model) {
         Person person = iPersonService.getPerson(id);
         model.addAttribute("person", person);
-    //    System.out.println("Read Dao -> Cont : " + person + person.getMobileHome() + person.getMobileHome().getRepairWorkList());///////////////////////////////////////////
-        return "view_person/add_new_person_data";
-    }
-
-    @RequestMapping("/updateInfoRepair")
-    public String updateRepair(@RequestParam("infoPersId") int id, Model model) {
         return "view_person/add_new_person_data";
     }
 

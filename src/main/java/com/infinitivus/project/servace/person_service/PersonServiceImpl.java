@@ -1,4 +1,4 @@
-package com.infinitivus.project.servace.person_servace;
+package com.infinitivus.project.servace.person_service;
 
 import com.infinitivus.project.dao.person_dao.IPersonRepository;
 import com.infinitivus.project.entity.person_entity.Person;

@@ -31,11 +31,8 @@
             <td align="center"><form:input path="username" /></td>
             <td align="center">
 
-
                 <form:checkboxes path="roles" items="${role}"  />
-<%--                ADMIN<form:checkbox path="roles" value="ROLE_ADMIN"/>--%>
-<%--                MANAGER<form:checkbox path="roles" value="ROLE_MANAGER"/>--%>
-<%--                MASTER<form:checkbox path="roles" value="ROLE_MASTER"/>--%>
+
             </td>
             <td align="center">
                 <input type="submit" value="Edit"

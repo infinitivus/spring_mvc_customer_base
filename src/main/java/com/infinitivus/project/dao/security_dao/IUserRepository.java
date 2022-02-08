@@ -8,4 +8,5 @@ public interface IUserRepository extends JpaRepository<UserData, Long> {
     UserData findByUsername(String username);
 
     UserData findById(Long id);
+
 }

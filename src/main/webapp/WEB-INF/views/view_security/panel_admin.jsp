@@ -12,14 +12,16 @@
 <c:url var="newUser" value="/adminPanel/addUser"/>
 
 <body>
-<br>
-<td align="left"><input type="button" value="<- Back to the list"
-                        onclick="window.location.href='${backToList}'"/></td>
-<td align="right"><input type="button" value="Create new user"
-                         onclick="window.location.href='${newUser}'"/></td>
-<br>
+<table align="center" width="90%">
+    <tr>
+        <td align="left"><input type="button" value="<- Back to the list"
+                                onclick="window.location.href='${backToList}'"/></td>
+        <td align="right"><input type="button" value="Create new user"
+                                 onclick="window.location.href='${newUser}'"/></td>
+    </tr>
+</table>
 <table align="center" width="90%" border="1">
-    <h3 align="center">Список пользователей и прав доступа</h3>
+    <h3 align="center">List of users and access rights</h3>
     <tr>
         <th>User id</th>
         <th>User name</th>
@@ -36,7 +38,6 @@
             <td align="center">${user.roles}</td>
             <td align="center"><input type="button" value="Edit user"
                                       onclick="window.location.href='${editInfoUser}'"/></td>
-
         </tr>
     </c:forEach>
 </table>

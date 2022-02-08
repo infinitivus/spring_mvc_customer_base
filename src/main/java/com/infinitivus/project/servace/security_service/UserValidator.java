@@ -1,4 +1,4 @@
-package com.infinitivus.project.validator;
+package com.infinitivus.project.servace.security_service;
 
 import com.infinitivus.project.entity.security_entity.UserData;
 import com.infinitivus.project.servace.security_service.IUserService;
@@ -24,7 +24,7 @@ public class UserValidator implements Validator {
         UserData user = (UserData) o;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
-        if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
+        if (user.getUsername().length() < 4 || user.getUsername().length() > 10) {
             errors.rejectValue("username", "Size.userForm.username");
         }
         if (userService.findByUsername(user.getUsername()) != null) {
@@ -32,7 +32,7 @@ public class UserValidator implements Validator {
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
-        if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
+        if (user.getPassword().length() < 4 || user.getPassword().length() > 10) {
             errors.rejectValue("password", "Size.userForm.password");
         }
 

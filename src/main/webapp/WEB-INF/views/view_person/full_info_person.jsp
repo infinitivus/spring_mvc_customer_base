@@ -14,15 +14,15 @@
         <c:param name="infoPersId" value="${pers.id}"/>
     </c:url>
 
-    <c:url var="updateButtonRepair" value="/updateInfoRepair">
-        <c:param name="infoPersId" value="${pers.id}"/>
+    <c:url var="addButtonRepair" value="/addRepairWorkPerson">
+        <c:param name="mobileHomeId" value="${pers.mobileHome.id}"/>
     </c:url>
 
     <c:url var="deleteButton" value="/deleteInfoPerson">
         <c:param name="infoPersId" value="${pers.id}"/>
     </c:url>
 
-    <c:url var="backToList" value="/"/>
+    <c:url var="backToList" value="/showAllPerson"/>
 
 <body>
 <br>
@@ -43,8 +43,8 @@
         </security:authorize>
 
         <security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_MASTER')">
-            <td align="right"><input type="button" value="Update repair information"
-                                     onclick="window.location.href='${updateButtonRepair}'"/></td>
+            <td align="right"><input type="button" value="Update information repair Work"
+                                     onclick="window.location.href='${addButtonRepair}'"/></td>
         </security:authorize>
 
         <security:authorize access="hasRole('ROLE_ADMIN')">
@@ -111,6 +111,22 @@
             <td align="center">${repair.master}</td>
             <td align="center">${repair.costWork}</td>
             <td align="center">${repair.date}</td>
+        </tr>
+    </c:forEach>
+</table>
+
+<table align="center" width="90%" border="1">
+    <h3 align="center">Ирформация о приобретенных запчастях</h3>
+    <tr>
+        <th>Name spare parts</th>
+        <th>Article</th>
+        <th>Cost</th>
+    </tr>
+    <c:forEach var="parts" items="${partsPerson}">
+        <tr>
+            <td align="center">${parts.nameSparePart}</td>
+            <td align="center">${parts.article}</td>
+            <td align="center">${parts.costPart}</td>
         </tr>
     </c:forEach>
 </table>

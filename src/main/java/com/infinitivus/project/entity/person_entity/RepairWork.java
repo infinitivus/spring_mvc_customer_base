@@ -1,8 +1,11 @@
 package com.infinitivus.project.entity.person_entity;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "repair_work")
@@ -24,16 +27,31 @@ public class RepairWork {
     @Column(name = "date")
     private String date;
 
-    @ManyToOne()
+    @ManyToOne( fetch = FetchType.EAGER)
     @JoinColumn(name = "home_id")
     private MobileHome mobileHomeRepair;
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinTable(name = "parts_work", joinColumns = @JoinColumn(name = "repair_work_id"),
             inverseJoinColumns = @JoinColumn(name = "spare_parts_id"))
     private List<SpareParts> sparePartsList;
 
     public RepairWork() {
+    }
+
+    public RepairWork(int id, String nameTheWork, String master, long costWork, String date) {
+        this.id = id;
+        this.nameTheWork = nameTheWork;
+        this.master = master;
+        this.costWork = costWork;
+        this.date = date;
+    }
+
+    public void addSparePartsToRepairWork(SpareParts spareParts) {
+        if (sparePartsList == null) {
+            sparePartsList = new ArrayList<>();
+        }
+        sparePartsList.add(spareParts);
     }
 
     public int getId() {
@@ -92,29 +110,16 @@ public class RepairWork {
         this.sparePartsList = sparePartsList;
     }
 
-    public RepairWork(String nameTheWork, String master, long costWork, String date) {
-        this.nameTheWork = nameTheWork;
-        this.master = master;
-        this.costWork = costWork;
-        this.date = date;
+//    @Override
+//    public String toString() {
+//        return "RepairWork{" +
+//                "id=" + id +
+//                ", nameTheWork='" + nameTheWork + '\'' +
+//                ", master='" + master + '\'' +
+//                ", costWork=" + costWork +
+//                ", date='" + date + '\'' +
+//                '}';
+//    }
 
-    }
 
-    public void addSparePartsToRepairWork(SpareParts spareParts) {
-        if (sparePartsList == null) {
-            sparePartsList = new ArrayList<>();
-        }
-        sparePartsList.add(spareParts);
-    }
-
-    @Override
-    public String toString() {
-        return "RepairWork{" +
-                "id=" + id +
-                ", nameTheWork='" + nameTheWork + '\'' +
-                ", master='" + master + '\'' +
-                ", costWork=" + costWork +
-                ", date='" + date + '\'' +
-                '}';
-    }
 }

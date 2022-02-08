@@ -1,10 +1,10 @@
-package com.infinitivus.project.controller;
+package com.infinitivus.project.controllers;
 
 import com.infinitivus.project.entity.security_entity.UserData;
 import com.infinitivus.project.entity.security_entity.UserRole;
 import com.infinitivus.project.servace.security_service.ISecurityService;
 import com.infinitivus.project.servace.security_service.IUserService;
-import com.infinitivus.project.validator.UserValidator;
+import com.infinitivus.project.servace.security_service.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @Controller
 public class SecurityController {
@@ -29,8 +28,6 @@ public class SecurityController {
     @RequestMapping("/")
     public String verification() {
         if (userService.verificationSchema()) {
-            System.out.println("1");
-            userService.createRoles();
             return "redirect:/registrationForm";
         } else {
             return "redirect:/login";
@@ -39,7 +36,6 @@ public class SecurityController {
 
     @RequestMapping(value = "/registrationForm", method = RequestMethod.GET)
     public String registrationForm(Model model) {
-        System.out.println("2");
         model.addAttribute("adminForm", new UserData());
         return "view_security/registration_admin";
     }
@@ -48,10 +44,9 @@ public class SecurityController {
     public String registration(@ModelAttribute("adminForm") UserData adminForm, BindingResult bindingResult, Model model) {
         userValidator.validate(adminForm, bindingResult);
         if (bindingResult.hasErrors()) {
-            System.out.println("error");
             return "view_security/registration_admin";
         }
-        System.out.println("3");
+        userService.createRoles();
         userService.saveAdmin(adminForm);
         securityService.autologin(adminForm.getUsername(), adminForm.getPasswordConfirm());
         return "redirect:/showAllPerson";
@@ -83,50 +78,27 @@ public class SecurityController {
     }
 
     @RequestMapping(value = "/adminPanel/saveEditedUser", method = RequestMethod.POST)
-    public String saveEditedUser(UserData user) {// при сохранении исправленного объекта добавляются роли в бд
-        System.out.println(user.getRoles());
-        System.out.println(user);
-        userService.saveEditedUser(user);
+    public String saveEditedUser(UserData user) {
+        userService.saveUser(user);
         return "redirect:/adminPanel";
     }
 
-    @RequestMapping("/adminPanel/addUser")
+    @RequestMapping(value = "/adminPanel/addUser", method = RequestMethod.GET)
     public String addNewUser(Model model) {
-        UserData addUser = new UserData();
+        model.addAttribute("userForm", new UserData());
         List<UserRole> listRoles = userService.listRoles();
-        model.addAttribute("addUser", addUser);
-        model.addAttribute("role", listRoles);
+        model.addAttribute("listRoles", listRoles);
         return "view_security/user_form_new";
     }
 
     @RequestMapping(value = "/adminPanel/saveNewUser", method = RequestMethod.POST)
-    public String saveNewUser(UserData user) {
-        for(Object object : user.getRoles()) {
-
-            System.out.println(object);
+    public String saveNewUser(@ModelAttribute("userForm") UserData userForm, BindingResult bindingResult) {
+        userValidator.validate(userForm, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "view_security/user_form_new";
         }
-
-
-//        Set<UserRole> werty=user.getRoles();
-//        for (int i = 0; i < user.getRoles().size(); i++) {
-//            System.out.println(user.getRoles(i));
-//            userService.editRoles(user.getRoles(i));
-//        }
-//        Role roleUser = roleRepo.findByName("User");
-//        Role roleCustomer = new Role(3);
-//
-//        user.addRole(roleUser);
-//        user.addRole(roleCustomer);
-        System.out.println(user.getRoles());
-        System.out.println(user);
-        userService.saveNewUser(user);
+        userService.encoder(userForm);
+        userService.saveUser(userForm);
         return "redirect:/adminPanel";
     }
-
-//    @RequestMapping("/addNewPersonData")
-//    public String addNewPersonData(Model model) {
-//        Person person = new Person();
-//        model.addAttribute("person", person);
-//        return "view_person/add_new_person_data";
-//    }
 }

@@ -3,7 +3,6 @@ package com.infinitivus.project.dao.person_dao;
 import com.infinitivus.project.entity.person_entity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
@@ -23,6 +22,7 @@ public class PersonRepositoryImpl implements IPersonRepository {
 
     @Override
     public void savePerson(Person person) {
+        System.out.println("dao"+person);
         entityManager.merge(person);
     }
 
@@ -40,8 +40,7 @@ public class PersonRepositoryImpl implements IPersonRepository {
 
     @Override
     public List<Person> searchPerson(String searchLine) {
-
-        Query query = entityManager.createQuery("from Person  where surname=:search or name=:search or phoneNumber=:search or email=:search");
+        Query query = entityManager.createQuery("from Person where surname=:search or name=:search or phoneNumber=:search or email=:search");
         query.setParameter("search", searchLine);
        List<Person> selectPerson = query.getResultList();
         return selectPerson;
@@ -49,14 +48,8 @@ public class PersonRepositoryImpl implements IPersonRepository {
 
     @Override
     public List<Person> sortPerson(String sortLine) {
-
         Query query = entityManager.createQuery("from Person f order by f." + sortLine);
        List<Person> sortPerson = query.getResultList();
         return sortPerson;
     }
-
-
-
-
-
 }

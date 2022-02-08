@@ -15,13 +15,22 @@
 <br>
 <table align="center" width="90%"  >
     <tr>
-        <td><input type="button" value="Add an entry" size="30"
+
+        <td><input type="button" value="Add Person" size="25"
                    onclick="window.location.href='addNewPersonData'"/>
+        </td>
+
+<%--        <td><input type="button" value="List repair work" size="25"--%>
+<%--                   onclick="window.location.href='showAllRepairWork'"/>--%>
+<%--        </td>--%>
+
+        <td><input type="button" value="List spare parts" size="25"
+                   onclick="window.location.href='showAllSpareParts'"/>
         </td>
 
         <td align="left"><input type="button" value="Admin Panel"
                                 onclick="window.location.href='${AdminPanel}'"/></td>
-        <td>
+        <td align="right">
            <form method="get" action="sortPerson" >
                <input type="submit" value="Sort by:"/>
                <label>
