@@ -22,7 +22,6 @@ public class PersonRepositoryImpl implements IPersonRepository {
 
     @Override
     public void savePerson(Person person) {
-        System.out.println("dao"+person);
         entityManager.merge(person);
     }
 
@@ -34,8 +33,8 @@ public class PersonRepositoryImpl implements IPersonRepository {
 
     @Override
     public void deletePerson(int id) {
-        Person person = getPerson(id);
-        entityManager.remove(person);
+        Query query = entityManager.createQuery("delete from Person r where r.id = :id");
+        query.setParameter("id", id).executeUpdate();
     }
 
     @Override
