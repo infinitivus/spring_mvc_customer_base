@@ -55,7 +55,7 @@ public class SparePartsController {
     }
 
     @RequestMapping("/addSparePartToWork")
-    public String addSparePart(@RequestParam("workId") int workId, Model model) {
+    public String addSparePart(@RequestParam("workId") Integer workId, Model model) {
         RepairWork repairWork = sparePartsService.getRepairWork(workId);
         model.addAttribute("repairWork", repairWork);
         List<SpareParts> spareParts = sparePartsService.allSpareParts();
@@ -69,7 +69,7 @@ public class SparePartsController {
     }
 
     @RequestMapping("/assignSparePartToWork")
-    public String assignSparePartToWork(@RequestParam("workId") int workId,
+    public String assignSparePartToWork(@RequestParam("workId") Integer workId,
                                         @Valid @ModelAttribute("partToWork") SpareParts spareParts) {
         Integer partId = spareParts.getId();
         sparePartsService.assignPartToWork(workId, partId);
@@ -77,10 +77,8 @@ public class SparePartsController {
     }
 
     @RequestMapping("/unplugSparePartToWork")
-    public String unplugSparePartToWork(@RequestParam("workId") int workId,
+    public String unplugSparePartToWork(@RequestParam("workId") Integer workId,
                                         @RequestParam("partId") Integer partId) {
-        System.out.println(workId);
-        System.out.println(partId);
         sparePartsService.unplugPartToWork(workId, partId);
         return "redirect:/addSparePartToWork?workId=" + workId;
     }

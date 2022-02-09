@@ -28,14 +28,14 @@ public class PersonServiceImpl implements IPersonService {
 
     @Override
     @Transactional
-    public Person getPerson(int id) {
+    public Person getPerson(Integer id) {
         return iPersonRepository.getPerson(id);
 
     }
 
     @Override
     @Transactional
-    public void deletePerson(int id) {
+    public void deletePerson(Integer id) {
         iPersonRepository.deletePerson(id);
     }
 

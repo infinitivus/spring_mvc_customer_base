@@ -29,24 +29,24 @@ public class SparePartsRepositoryImpl implements ISparePartsRepository {
     }
 
     @Override
-    public SpareParts getSpareParts(int id) {
+    public SpareParts getSpareParts(Integer id) {
         SpareParts spareParts = entityManager.find(SpareParts.class, id);
         return spareParts;
     }
 
     @Override
-    public void deleteSpareParts(int id) {
+    public void deleteSpareParts(Integer id) {
         SpareParts spareParts = getSpareParts(id);
         entityManager.remove(spareParts);
     }
 
     @Override
-    public RepairWork getRepairWork(int workId) {
+    public RepairWork getRepairWork(Integer workId) {
         return entityManager.find(RepairWork.class, workId);
     }
 
     @Override
-    public void assignPartToWork(int workId, int partId) {
+    public void assignPartToWork(Integer workId, Integer partId) {
         RepairWork repairWork = getRepairWork(workId);
         SpareParts spareParts = getSpareParts(partId);
         repairWork.addSparePartsToRepairWork(spareParts);
@@ -54,7 +54,7 @@ public class SparePartsRepositoryImpl implements ISparePartsRepository {
     }
 
     @Override
-    public void unplugPartToWork(int workId, Integer partId) {
+    public void unplugPartToWork(Integer workId, Integer partId) {
         SpareParts spareParts = getSpareParts(partId);
         RepairWork repairWork = getRepairWork(workId);
         List<SpareParts> listPartsToWork = repairWork.getSparePartsList();

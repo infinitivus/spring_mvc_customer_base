@@ -33,32 +33,32 @@ public class PersonController {
         return "view_person/add_new_person_data";
     }
 
-    @RequestMapping("/savePersonData")///////////////////////////////
+    @RequestMapping("/savePersonData")
     public String savePerson(@Valid @ModelAttribute("person") Person person, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "view_person/add_new_person_data";
         }
-        System.out.println("cont"+person);
-            iPersonService.savePerson(person);
-            return "redirect:/showAllPerson";
-        }
+        System.out.println("cont" + person);
+        iPersonService.savePerson(person);
+        return "redirect:/showAllPerson";
+    }
 
     @RequestMapping("/fullInfoPerson")
-    public String fullInfoPerson(@RequestParam("infoPersId") int id, Model model) {
+    public String fullInfoPerson(@RequestParam("infoPersId") Integer id, Model model) {
         Person person = iPersonService.getPerson(id);
         model.addAttribute("pers", person);
         return "view_person/full_info_person";
     }
 
     @RequestMapping("/updateInfoPerson")
-    public String updatePerson(@RequestParam("infoPersId") int id, Model model) {
+    public String updatePerson(@RequestParam("infoPersId") Integer id, Model model) {
         Person person = iPersonService.getPerson(id);
         model.addAttribute("person", person);
         return "view_person/add_new_person_data";
     }
 
     @RequestMapping("/deleteInfoPerson")
-    public String deletePerson(@RequestParam("infoPersId") int id) {
+    public String deletePerson(@RequestParam("infoPersId") Integer id) {
         iPersonService.deletePerson(id);
         return "redirect:/showAllPerson";
     }

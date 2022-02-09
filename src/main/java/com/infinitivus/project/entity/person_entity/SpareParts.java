@@ -23,8 +23,6 @@ public class SpareParts {
     private String article;
 
     @ManyToMany(mappedBy = "sparePartsList")
-//    @JoinTable(name="parts_work", joinColumns = @JoinColumn(name="spare_parts_id"),
-//            inverseJoinColumns = @JoinColumn(name="repair_work_id"))
     private List<RepairWork> repairWorkList;
 
     public SpareParts() {
@@ -95,14 +93,4 @@ public class SpareParts {
     public int hashCode() {
         return Objects.hash(getId(), getNameSparePart(), getCostPart(), getArticle(), getRepairWorkList());
     }
-
-//    @Override
-//    public String toString() {
-//        return "SpareParts{" +
-//                "id=" + id +
-//                ", nameSparePart='" + nameSparePart + '\'' +
-//                ", costPart=" + costPart +
-//                ", article='" + article + '\'' +
-//                '}';
-//    }
 }

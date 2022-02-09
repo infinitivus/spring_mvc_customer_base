@@ -7,17 +7,17 @@ import java.util.List;
 
 public interface ISparePartsRepository {
 
-    public List<SpareParts> getAllSpareParts();
+    List<SpareParts> getAllSpareParts();
 
-    public void saveSpareParts(SpareParts spareParts);
+    void saveSpareParts(SpareParts spareParts);
 
-    public SpareParts getSpareParts(int id);
+    SpareParts getSpareParts(Integer id);
 
-    public void deleteSpareParts(int id);
+    void deleteSpareParts(Integer id);
 
-    public RepairWork getRepairWork(int workId);
+    RepairWork getRepairWork(Integer workId);
 
-    public void assignPartToWork(int workId, int partId);
+    void assignPartToWork(Integer workId, Integer partId);
 
-    public void unplugPartToWork(int workId,Integer partId);
+    void unplugPartToWork(Integer workId, Integer partId);
 }

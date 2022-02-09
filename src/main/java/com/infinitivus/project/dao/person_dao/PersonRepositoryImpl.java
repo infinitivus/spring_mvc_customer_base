@@ -26,12 +26,12 @@ public class PersonRepositoryImpl implements IPersonRepository {
     }
 
     @Override
-    public Person getPerson(int id) {
+    public Person getPerson(Integer id) {
         return entityManager.find(Person.class, id);
     }
 
     @Override
-    public void deletePerson(int id) {
+    public void deletePerson(Integer id) {
         Query query = entityManager.createQuery("delete from Person r where r.id = :id");
         query.setParameter("id", id).executeUpdate();
     }

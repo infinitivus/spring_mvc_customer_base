@@ -1,11 +1,8 @@
 package com.infinitivus.project.entity.person_entity;
 
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "repair_work")
@@ -13,7 +10,7 @@ public class RepairWork {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "name_the_work")
     private String nameTheWork;
@@ -39,7 +36,7 @@ public class RepairWork {
     public RepairWork() {
     }
 
-    public RepairWork(int id, String nameTheWork, String master, long costWork, String date) {
+    public RepairWork(Integer id, String nameTheWork, String master, long costWork, String date) {
         this.id = id;
         this.nameTheWork = nameTheWork;
         this.master = master;
@@ -54,11 +51,11 @@ public class RepairWork {
         sparePartsList.add(spareParts);
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -109,17 +106,4 @@ public class RepairWork {
     public void setSparePartsList(List<SpareParts> sparePartsList) {
         this.sparePartsList = sparePartsList;
     }
-
-//    @Override
-//    public String toString() {
-//        return "RepairWork{" +
-//                "id=" + id +
-//                ", nameTheWork='" + nameTheWork + '\'' +
-//                ", master='" + master + '\'' +
-//                ", costWork=" + costWork +
-//                ", date='" + date + '\'' +
-//                '}';
-//    }
-
-
 }

@@ -28,25 +28,25 @@ public class RepairWorkRepositoryImpl implements IRepairWorkRepository {
     }
 
     @Override
-    public RepairWork getRepairWork(int id) {
+    public RepairWork getRepairWork(Integer id) {
         RepairWork repairWork = entityManager.find(RepairWork.class, id);
         return repairWork;
     }
 
     @Override
-    public void deleteRepairWork(int id) {
+    public void deleteRepairWork(Integer id) {
         Query query = entityManager.createQuery("delete from RepairWork r where r.id = :id");
-                query.setParameter("id", id).executeUpdate();
+        query.setParameter("id", id).executeUpdate();
     }
 
     @Override
-    public MobileHome getMobileHome(int id) {
+    public MobileHome getMobileHome(Integer id) {
         MobileHome mobileHome = entityManager.find(MobileHome.class, id);
         return mobileHome;
     }
 
     @Override
-    public void saveMobileHome(int id, RepairWork repairWork) {
+    public void saveMobileHome(Integer id, RepairWork repairWork) {
         MobileHome getMobileHome = entityManager.find(MobileHome.class, id);
         getMobileHome.addRepairWorkToMobileHome(repairWork);
         entityManager.merge(getMobileHome);

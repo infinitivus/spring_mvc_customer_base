@@ -29,31 +29,31 @@ public class SparePartsServiceImpl implements ISparePartsService {
 
     @Override
     @Transactional
-    public SpareParts getSpareParts(int id) {
+    public SpareParts getSpareParts(Integer id) {
         return sparePartsRepository.getSpareParts(id);
     }
 
     @Override
     @Transactional
-    public void deleteSpareParts(int id) {
+    public void deleteSpareParts(Integer id) {
         sparePartsRepository.deleteSpareParts(id);
     }
 
     @Override
     @Transactional
-    public RepairWork getRepairWork(int workId) {
+    public RepairWork getRepairWork(Integer workId) {
         return sparePartsRepository.getRepairWork(workId);
     }
 
     @Override
     @Transactional
-    public void assignPartToWork(int workId, int partId) {
+    public void assignPartToWork(Integer workId, Integer partId) {
         sparePartsRepository.assignPartToWork(workId, partId);
     }
 
     @Override
     @Transactional
-    public void unplugPartToWork(int workId, Integer partId) {
+    public void unplugPartToWork(Integer workId, Integer partId) {
         sparePartsRepository.unplugPartToWork(workId, partId);
     }
 

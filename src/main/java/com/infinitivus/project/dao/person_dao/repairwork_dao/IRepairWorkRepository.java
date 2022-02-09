@@ -7,15 +7,15 @@ import java.util.List;
 
 public interface IRepairWorkRepository {
 
-    public List<RepairWork> getAllRepairWork();
+    List<RepairWork> getAllRepairWork();
 
-    public void saveRepairWork(RepairWork repairWork);
+    void saveRepairWork(RepairWork repairWork);
 
-    public RepairWork getRepairWork(int id);
+    RepairWork getRepairWork(Integer id);
 
-    public void deleteRepairWork(int id);
+    void deleteRepairWork(Integer id);
 
-    public MobileHome getMobileHome(int id);
+    MobileHome getMobileHome(Integer id);
 
-    public void saveMobileHome(int id,RepairWork repairWork);
+    void saveMobileHome(Integer id, RepairWork repairWork);
 }

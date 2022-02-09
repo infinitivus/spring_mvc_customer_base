@@ -11,11 +11,11 @@ public interface IRepairWorkService {
 
     public void saveRepairWork(RepairWork repairWork);
 
-    public RepairWork getRepairWork(int id);
+    public RepairWork getRepairWork(Integer id);
 
-    public void deleteRepairWork(int id);
+    public void deleteRepairWork(Integer id);
 
-    public MobileHome getMobileHome(int id);
+    public MobileHome getMobileHome(Integer id);
 
-    public void saveMobileHome(int id,RepairWork repairWork);
+    public void saveMobileHome(Integer id,RepairWork repairWork);
 }

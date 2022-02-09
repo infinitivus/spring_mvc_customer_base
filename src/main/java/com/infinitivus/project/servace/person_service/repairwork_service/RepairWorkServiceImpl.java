@@ -29,25 +29,25 @@ public class RepairWorkServiceImpl implements IRepairWorkService {
 
     @Override
     @Transactional
-    public RepairWork getRepairWork(int id) {
+    public RepairWork getRepairWork(Integer id) {
         return repairWorkRepository.getRepairWork(id);
     }
 
     @Override
     @Transactional
-    public void deleteRepairWork(int id) {
+    public void deleteRepairWork(Integer id) {
         repairWorkRepository.deleteRepairWork(id);
     }
 
     @Override
     @Transactional
-    public MobileHome getMobileHome(int id){
+    public MobileHome getMobileHome(Integer id) {
         return repairWorkRepository.getMobileHome(id);
     }
 
     @Override
     @Transactional
-    public void saveMobileHome(int id,RepairWork repairWork){
-        repairWorkRepository.saveMobileHome(id,repairWork);
+    public void saveMobileHome(Integer id, RepairWork repairWork) {
+        repairWorkRepository.saveMobileHome(id, repairWork);
     }
 }

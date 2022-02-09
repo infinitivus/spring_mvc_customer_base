@@ -6,15 +6,15 @@ import java.util.List;
 
 public interface IPersonService {
 
-    public List<Person> allPerson();
+    List<Person> allPerson();
 
-    public void savePerson(Person person);
+    void savePerson(Person person);
 
-    public Person getPerson(int id);
+    Person getPerson(Integer id);
 
-    public void deletePerson(int id);
+    void deletePerson(Integer id);
 
-    public List<Person> searchPerson(String searchLine);
+    List<Person> searchPerson(String searchLine);
 
-    public List<Person> sortPerson(String sortLine);
+    List<Person> sortPerson(String sortLine);
 }

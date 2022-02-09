@@ -19,7 +19,7 @@ public class RepairWorkController {
     private IRepairWorkService repairWorkService;
 
     @RequestMapping("/addRepairWorkPerson")
-    public String updateRepairWork(@RequestParam("mobileHomeId") int homeId, Model model) {
+    public String updateRepairWork(@RequestParam("mobileHomeId") Integer homeId, Model model) {
         MobileHome mobileHome = repairWorkService.getMobileHome(homeId);
         model.addAttribute("mobileHome", mobileHome);
         model.addAttribute("newRepairWork", new RepairWork());
@@ -27,25 +27,16 @@ public class RepairWorkController {
     }
 
     @RequestMapping("/saveRepairWork")
-    public String saveRepairWork(@RequestParam("mobileHomeId") int homeId,
+    public String saveRepairWork(@RequestParam("mobileHomeId") Integer homeId,
                                  @Valid @ModelAttribute("newRepairWork") RepairWork repairWork) {
         repairWorkService.saveMobileHome(homeId, repairWork);
         return "redirect:/addRepairWorkPerson?mobileHomeId=" + homeId;
     }
 
     @RequestMapping("/deleteRepairWork")
-    public String deleteRepairWork(@RequestParam("mobileHomeId") int homeId,
-                                   @RequestParam("workId") int workId) {
+    public String deleteRepairWork(@RequestParam("mobileHomeId") Integer homeId,
+                                   @RequestParam("workId") Integer workId) {
         repairWorkService.deleteRepairWork(workId);
         return "redirect:/addRepairWorkPerson?mobileHomeId=" + homeId;
     }
-
-//    @RequestMapping("/editRepairWork")
-//    public String editRepairWork(@RequestParam("mobileHomeId") int homeId,
-//                                 @RequestParam("workId") int workId,
-//                                 Model model) {
-//        RepairWork editRepairWork = repairWorkService.getRepairWork(workId);
-//        model.addAttribute("newRepairWork", editRepairWork);
-//        return "view_person/view_repairwork/edit_repairwork";
-//    }
 }
