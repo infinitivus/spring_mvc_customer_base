@@ -3,7 +3,6 @@ package com.infinitivus.project.entity.person_entity;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -13,42 +12,42 @@ public class MobileHome {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @Column(name = "type")
-//    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,15}$", message = "Error! Enter the sample data")
+    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,15}$", message = "Error! Enter the sample data")
     private String type;
 
     @Column(name = "brand")
-//    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,15}$", message = "Error! Enter the sample data")
+    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,15}$", message = "Error! Enter the sample data")
     private String brand;
 
     @Column(name = "model")
-//    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,15}$", message = "Error! Enter the sample data")
+    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,15}$", message = "Error! Enter the sample data")
     private String model;
 
     @Column(name = "vin")
-//    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,20}$", message = "Error! Enter the sample data")
+    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,20}$", message = "Error! Enter the sample data")
     private String vin;
 
     @Column(name = "year_of_release")
-//    @Pattern(regexp = "^[1-9][0-9]{3}$", message = "Error! Enter the sample data")
+    @Pattern(regexp = "^[1-9][0-9]{3}$", message = "Error! Enter the sample data")
     private String yearOfRelease;
 
     @Column(name = "license_plate")
-//    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,15}$", message = "Error! Enter the sample data")
+    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,15}$", message = "Error! Enter the sample data")
     private String licensePlate;
 
-    @OneToOne(mappedBy = "mobileHome") ////////////////////
+    @OneToOne(mappedBy = "mobileHome")
     private Person homePerson;
 
-    @OneToMany(mappedBy = "mobileHomeRepair",fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "mobileHomeRepair", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private Set<RepairWork> repairWorkList;
 
     public MobileHome() {
     }
 
-    public MobileHome(int id, String type, String brand, String model, String vin, String yearOfRelease, String licensePlate,Person homePerson) {
+    public MobileHome(Integer id, String type, String brand, String model, String vin, String yearOfRelease, String licensePlate, Person homePerson) {
         this.id = id;
         this.type = type;
         this.brand = brand;
@@ -68,11 +67,11 @@ public class MobileHome {
         return repairWork;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -139,20 +138,4 @@ public class MobileHome {
     public void setRepairWorkList(Set<RepairWork> repairWorkList) {
         this.repairWorkList = repairWorkList;
     }
-
-//    @Override
-//    public String toString() {
-//        return "MobileHome{" +
-//                ", type='" + type + '\'' +
-//                ", brand='" + brand + '\'' +
-//                ", model='" + model + '\'' +
-//                ", vin='" + vin + '\'' +
-//                ", yearOfRelease='" + yearOfRelease + '\'' +
-//                ", licensePlate='" + licensePlate + '\'' +
-//                ", homePerson=" + homePerson +
-//                ", repairWorkList=" + repairWorkList +
-//                '}';
-//    }
-
-
 }
