@@ -29,15 +29,15 @@
         </tr>
         <tr>
             <td align="center"><form:input path="surname" placeholder="Surname*"/></td>
-<%--            <form:errors path="surname"/>--%>
+            <form:errors path="surname"/>
             <td align="center"><form:input path="name" placeholder="Name*"/></td>
-<%--            <form:errors path="name"/>--%>
+            <form:errors path="name"/>
             <td align="center"><form:input path="phoneNumber" placeholder="Phone number*"/></td>
-<%--            <form:errors path="phoneNumber"/>--%>
+            <form:errors path="phoneNumber"/>
             <td align="center"><form:input path="email" placeholder="Email"/></td>
-<%--            <form:errors path="email"/>--%>
+            <form:errors path="email"/>
             <td align="center"><form:input path="birthday" placeholder="Birthday"/></td>
-<%--            <form:errors path="birthday"/>--%>
+            <form:errors path="birthday"/>
         </tr>
     </table>
     <table align="center" width="90%">
@@ -53,17 +53,17 @@
         </tr>
         <tr>
             <td align="center"><form:input path="mobileHome.type" placeholder="Type"/></td>
-<%--            <form:errors path="mobileHome.type"/>--%>
+            <form:errors path="mobileHome.type"/>
             <td align="center"><form:input path="mobileHome.brand" placeholder="Brand"/></td>
-<%--            <form:errors path="mobileHome.brand"/>--%>
+            <form:errors path="mobileHome.brand"/>
             <td align="center"><form:input path="mobileHome.model" placeholder="Model"/></td>
-<%--            <form:errors path="mobileHome.model"/>--%>
+            <form:errors path="mobileHome.model"/>
             <td align="center"><form:input path="mobileHome.vin" placeholder="Vin"/></td>
-<%--            <form:errors path="mobileHome.vin"/>--%>
+            <form:errors path="mobileHome.vin"/>
             <td align="center"><form:input path="mobileHome.yearOfRelease" placeholder="Year of release"/></td>
-<%--            <form:errors path="mobileHome.yearOfRelease"/>--%>
+            <form:errors path="mobileHome.yearOfRelease"/>
             <td align="center"><form:input path="mobileHome.licensePlate" placeholder="Lisense plate"/></td>
-<%--            <form:errors path="mobileHome.licensePlate"/>--%>
+            <form:errors path="mobileHome.licensePlate"/>
         </tr>
     </table>
     <br>

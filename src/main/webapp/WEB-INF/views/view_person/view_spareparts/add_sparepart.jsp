@@ -18,7 +18,8 @@
     <tr>
         <td align="left"><input type="button" value="<- Back to the list"
                                 onclick="window.location.href='${backToList}'"/></td>
-    </tr></table>
+    </tr>
+</table>
 <form:form modelAttribute="partToWork" method="post" action="${assignSparePart}">
     <table align="center" width="90%">
         <tr>
@@ -36,9 +37,9 @@
         <h4 align="center">Add spare part</h4>
         <tr>
             <td align="center">
-                    <form:select size="5" path="id">
+                <form:select size="5" path="id">
                     <form:options items="${spareParts}"/>
-                        </form:select>
+                </form:select>
             <td align="center"><input type="submit" value="Add parts"
                                       onclick="window.location.href='${assignSparePart}'"/>
         </tr>
@@ -63,8 +64,8 @@
                 <td align="left" width="80%">${parts.nameSparePart}</td>
                 <td align="center" width="7%">${parts.article}</td>
                 <td align="center" width="7%">${parts.costPart}</td>
-                <td align="center"width="4%"> <input type="button" value="Delete"
-                                                                        onclick="window.location.href='${deleteSparePart}'"/>
+                <td align="center" width="4%"><input type="button" value="Delete"
+                                                     onclick="window.location.href='${deleteSparePart}'"/>
 
             </tr>
         </c:forEach>
