@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -6,12 +7,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" \>
     <title>add_update data</title>
 </head>
+<c:url var="backToList" value="/showAllPerson"/>
 <body>
+<br>
+<table align="center" width="90%">
+    <tr>
+        <td align="left"><input type="button" value="<- Back to the list"
+                                onclick="window.location.href='${backToList}'"/></td>
+    </tr></table>
 <form:form action="savePersonData" modelAttribute="person">
     <form:hidden path="id"/>
     <h3 align="center">Add or edit information</h3>
     <table align="center" width="90%">
-        <h3 align="center">Personal information</h3>
+        <h4 align="center">Personal information</h4>
         <tr>
             <td align="center">Last name from 3 to 15 characters</td>
             <td align="center">First name from 3 to 30 characters</td>
@@ -33,7 +41,7 @@
         </tr>
     </table>
     <table align="center" width="90%">
-        <h3 align="center">Motorhome information</h3>
+        <h4 align="center">Motorhome information</h4>
         <form:hidden path="mobileHome.id"/>
         <tr>
             <td align="center">1</td>
@@ -59,8 +67,11 @@
         </tr>
     </table>
     <br>
-    <input type="submit" value="Save"
-           onclick="window.location.href='${savePersonData}'"/>
+    <table align="center" width="90%">
+        <tr>
+            <td align="left"><input type="submit" value="Save"
+                                    onclick="window.location.href='${savePersonData}'"/></td>
+        </tr></table>
 </form:form>
 </body>
 </html>

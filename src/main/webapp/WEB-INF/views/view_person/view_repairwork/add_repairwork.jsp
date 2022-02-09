@@ -6,28 +6,39 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Add/edit repair work</title>
+    <title>Add/edit repair work and spare parts</title>
 </head>
-<body>
-
+<c:url var="backToList" value="/showAllPerson"/>
 <c:url var="saveRepairWork" value="/saveRepairWork">
     <c:param name="mobileHomeId" value="${mobileHome.id}"/>
 </c:url>
-
+<body>
+<br>
+<table align="center" width="90%">
+    <tr>
+        <td align="left"><input type="button" value="<- Back to the list"
+                                onclick="window.location.href='${backToList}'"/></td>
+    </tr>
+</table>
 <form:form modelAttribute="newRepairWork" method="POST" action="${saveRepairWork}">
-    <table align="center" width="90%">
+    <table bgcolor="white" align="center" width="90%" border="1">
         <h3 align="center">Add repair work</h3>
         <tr>
-            <td>Mobile home: Brand:<input type="text" value="${mobileHome.brand }" disabled="true"/>
-
-            <td> Model:<input type="text" value="${mobileHome.model }" disabled="true"/>
-
-            <td>Vin:<input type="text" value="${mobileHome.vin }" disabled="true"/>
-
-            <td> Year:<input type="text" value="${mobileHome.yearOfRelease }" disabled="true"/>
+            <td>Mobile home: Brand:<label>
+                <input type="text" value="${mobileHome.brand }" disabled="true"/>
+            </label>
+            <td> Model:<label>
+                <input type="text" value="${mobileHome.model }" disabled="true"/>
+            </label>
+            <td>Vin:<label>
+                <input type="text" value="${mobileHome.vin }" disabled="true"/>
+            </label>
+            <td> Year:<label>
+                <input type="text" value="${mobileHome.yearOfRelease }" disabled="true"/>
+            </label>
         </tr>
     </table>
-    <table align="center" width="90%" border="1">
+    <table bgcolor="white" align="center" width="90%" border="1">
         <tr>
             <th>Name new repair work</th>
             <th>Master</th>
@@ -44,39 +55,51 @@
         </tr>
     </table>
 </form:form>
-<table align="center" width="90%" border="1">
-    <h3 align="center">Information about repair work</h3>
-    <tr>
-        <th>Name the work</th>
-        <th>Master</th>
-        <th>Cost</th>
-        <th>Date</th>
-        <th>Apply</th>
-    </tr>
-    <c:forEach var="repair" items="${mobileHome.repairWorkList}">
-
-        <c:url var="deleteWork" value="/deleteRepairWork">
-            <c:param name="workId" value="${repair.id}"/>
-            <c:param name="mobileHomeId" value="${mobileHome.id}"/>
-        </c:url>
-
-        <c:url var="addPart" value="/addSparePartToWork">
-            <c:param name="workId" value="${repair.id}"/>
-        </c:url>
-
+<h3 align="center">Information about repair work and spare parts</h3>
+<c:forEach var="repair" items="${mobileHome.repairWorkList}">
+    <c:url var="deleteWork" value="/deleteRepairWork">
+        <c:param name="workId" value="${repair.id}"/>
+        <c:param name="mobileHomeId" value="${mobileHome.id}"/>
+    </c:url>
+    <c:url var="addPart" value="/addSparePartToWork">
+        <c:param name="workId" value="${repair.id}"/>
+    </c:url>
+    <table bgcolor="white" align="center" width="90%" border="1">
         <tr>
-            <td align="left" width="65%">${repair.nameTheWork}</td>
-            <td align="center" width="5%">${repair.master}</td>
-            <td align="center" width="5%">${repair.costWork}</td>
-            <td align="center" width="5%">${repair.date}</td>
-            <td align="center" width="20%">
+            <th>Name the work</th>
+            <th>Master</th>
+            <th>Cost</th>
+            <th>Date</th>
+            <th>Apply</th>
+        </tr>
+        <tr>
+            <td align="left" width="63%">${repair.nameTheWork}</td>
+            <td align="center" width="7%">${repair.master}</td>
+            <td align="center" width="7%">${repair.costWork}</td>
+            <td align="center" width="7%">${repair.date}</td>
+            <td align="center" width="16%">
                 <input type="submit" value="Delete"
                        onclick="window.location.href='${deleteWork}'"/>
                 <input type="submit" value="Add part"
                        onclick="window.location.href='${addPart}'"/>
             </td>
         </tr>
-    </c:forEach>
-</table>
+    </table>
+    <table bgcolor="white" align="center" width="90%" border="1">
+        <tr>
+            <th align="left" width="84%">Name spare parts</th>
+            <th align="center" width="8%">Article</th>
+            <th align="center" width="8%">Cost</th>
+        </tr>
+        <c:forEach var="parts" items="${repair.sparePartsList}">
+            <tr>
+                <td align="left" width="84%">${parts.nameSparePart}</td>
+                <td align="left" width="8%">${parts.article}</td>
+                <td align="left" width="8%">${parts.costPart}</td>
+            </tr>
+        </c:forEach>
+    </table>
+    <br>
+</c:forEach>
 </body>
 </html>

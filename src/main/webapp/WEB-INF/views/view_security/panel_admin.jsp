@@ -6,12 +6,10 @@
 <head>
     <title>Admin panel</title>
 </head>
-
 <c:url var="backToList" value="/showAllPerson"/>
-
 <c:url var="newUser" value="/adminPanel/addUser"/>
-
 <body>
+<br>
 <table align="center" width="90%">
     <tr>
         <td align="left"><input type="button" value="<- Back to the list"

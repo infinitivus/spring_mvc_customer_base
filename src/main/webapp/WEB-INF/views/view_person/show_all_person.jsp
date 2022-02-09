@@ -3,44 +3,37 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>show all person</title>
 </head>
-
 <c:url var="AdminPanel" value="/adminPanel"/>
-
 <body>
 <br>
-<table align="center" width="90%"  >
+<table align="center" width="90%">
     <tr>
-
         <td><input type="button" value="Add Person" size="25"
                    onclick="window.location.href='addNewPersonData'"/>
         </td>
-
-<%--        <td><input type="button" value="List repair work" size="25"--%>
-<%--                   onclick="window.location.href='showAllRepairWork'"/>--%>
-<%--        </td>--%>
-
-        <td><input type="button" value="List spare parts" size="25"
-                   onclick="window.location.href='showAllSpareParts'"/>
-        </td>
-
-        <td align="left"><input type="button" value="Admin Panel"
-                                onclick="window.location.href='${AdminPanel}'"/></td>
+        <security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_MASTER')">
+            <td><input type="button" value="List spare parts" size="25"
+                       onclick="window.location.href='showAllSpareParts'"/></td>
+        </security:authorize>
+        <security:authorize access="hasRole('ROLE_ADMIN')">
+            <td align="left"><input type="button" value="Admin Panel"
+                                    onclick="window.location.href='${AdminPanel}'"/></td>
+        </security:authorize>
         <td align="right">
-           <form method="get" action="sortPerson" >
-               <input type="submit" value="Sort by:"/>
-               <label>
-                   <select name="select" size="1">
-                       <option value="id">Default</option>
-                       <option value="surname">Surname</option>
-                       <option value="name">Name</option>
-                   </select>
-               </label>
-           </form>
+            <form method="get" action="sortPerson">
+                <input type="submit" value="Sort by:"/>
+                <label>
+                    <select name="select" size="1">
+                        <option value="id">Default</option>
+                        <option value="surname">Surname</option>
+                        <option value="name">Name</option>
+                    </select>
+                </label>
+            </form>
         </td>
         <td align="right">
             <form method="get" action="searchPerson">
@@ -53,8 +46,8 @@
     </tr>
 </table>
 <br>
-<table align="center" width="90%" border="1" >
-    <h3 align="center" >Список клиентов компании</h3>
+<table align="center" width="90%" border="1">
+    <h3 align="center">List of the company's clients</h3>
     <tr>
         <th>Surname</th>
         <th>Name</th>
@@ -74,7 +67,7 @@
             <td align="center">${pers.email}</td>
             <td align="center">${pers.birthday}</td>
             <td align="center">
-                <input type="button" value="See"
+                <input type="button" value="See full info"
                        onclick="window.location.href='${fullInfoButton}'"/>
             </td>
         </tr>

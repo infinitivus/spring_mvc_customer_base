@@ -81,9 +81,7 @@ public class SparePartsController {
                                         @RequestParam("partId") Integer partId) {
         System.out.println(workId);
         System.out.println(partId);
-
         sparePartsService.unplugPartToWork(workId, partId);
-
         return "redirect:/addSparePartToWork?workId=" + workId;
     }
 }

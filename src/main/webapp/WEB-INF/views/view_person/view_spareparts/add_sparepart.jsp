@@ -8,12 +8,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Add spare part</title>
 </head>
-<body>
-
+<c:url var="backToList" value="/showAllPerson"/>
 <c:url var="assignSparePart" value="/assignSparePartToWork">
     <c:param name="workId" value="${repairWork.id}"/>
 </c:url>
-
+<body>
+<br>
+<table align="center" width="90%">
+    <tr>
+        <td align="left"><input type="button" value="<- Back to the list"
+                                onclick="window.location.href='${backToList}'"/></td>
+    </tr></table>
 <form:form modelAttribute="partToWork" method="post" action="${assignSparePart}">
     <table align="center" width="90%">
         <tr>
@@ -38,7 +43,6 @@
                                       onclick="window.location.href='${assignSparePart}'"/>
         </tr>
     </table>
-
     <table align="center" width="90%" border="1">
         <h3 align="center">Information about spare parts</h3>
         <tr>
