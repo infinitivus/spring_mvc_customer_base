@@ -15,27 +15,27 @@ public class MobileHome {
     private Integer id;
 
     @Column(name = "type")
-    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,15}$", message = "Error! Enter the sample data")
+//    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,15}?$", message = "Error! Enter the sample data")
     private String type;
 
     @Column(name = "brand")
-    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,15}$", message = "Error! Enter the sample data")
+//    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,15}?$", message = "Error! Enter the sample data")
     private String brand;
 
     @Column(name = "model")
-    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,15}$", message = "Error! Enter the sample data")
+//    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,15}?$", message = "Error! Enter the sample data")
     private String model;
 
     @Column(name = "vin")
-    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,20}$", message = "Error! Enter the sample data")
+//    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,30}?$", message = "Error! Enter the sample data")
     private String vin;
 
     @Column(name = "year_of_release")
-    @Pattern(regexp = "^[1-9][0-9]{3}$", message = "Error! Enter the sample data")
+//    @Pattern(regexp = "^[1-9][0-9]{3}?$", message = "Error! Enter the sample data")
     private String yearOfRelease;
 
     @Column(name = "license_plate")
-    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,15}$", message = "Error! Enter the sample data")
+//    @Pattern(regexp = "^([А-Яа-яЁё]|[A-Za-z]){3,11}?$", message = "Error! Enter the sample data")
     private String licensePlate;
 
     @OneToOne(mappedBy = "mobileHome")
