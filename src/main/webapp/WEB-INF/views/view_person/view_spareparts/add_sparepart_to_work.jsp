@@ -47,7 +47,6 @@
     <table align="center" width="90%" border="1">
         <h3 align="center">Information about spare parts</h3>
         <tr>
-            <th>Id</th>
             <th>Name the part</th>
             <th>Article</th>
             <th>Cost</th>
@@ -60,7 +59,6 @@
                 <c:param name="partId" value="${parts.id}"/>
             </c:url>
             <tr>
-                <td align="left" width="2%">${parts.id}</td>
                 <td align="left" width="80%">${parts.nameSparePart}</td>
                 <td align="center" width="7%">${parts.article}</td>
                 <td align="center" width="7%">${parts.costPart}</td>

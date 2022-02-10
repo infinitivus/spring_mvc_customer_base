@@ -28,13 +28,13 @@ public class SparePartsController {
         model.addAttribute("allParts", allSpareParts);
         SpareParts spareParts = new SpareParts();
         model.addAttribute("spareParts", spareParts);
-        return "view_person/view_spareparts/show_all_spareparts";
+        return "view_person/view_spareparts/add_sparepart_and_show_all";
     }
 
     @RequestMapping("/saveSpareParts")
     public String saveSpareParts(@Valid @ModelAttribute("spareParts") SpareParts spareParts, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "view_person/view_spareparts/show_all_spareparts";
+            return "view_person/view_spareparts/add_sparepart_and_show_all";
         } else {
             sparePartsService.saveSpareParts(spareParts);
             return "redirect:/showAllSpareParts";
@@ -65,7 +65,7 @@ public class SparePartsController {
         }
         model.addAttribute("spareParts", nameSparePart);
         model.addAttribute("partToWork", new SpareParts());
-        return "view_person/view_spareparts/add_sparepart";
+        return "view_person/view_spareparts/add_sparepart_to_work";
     }
 
     @RequestMapping("/assignSparePartToWork")

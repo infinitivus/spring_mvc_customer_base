@@ -43,17 +43,15 @@
             <td align="center"><form:errors cssStyle="color: red" path="birthday"/></td>
         </tr>
     </table>
-<%--    <form:form modelAttribute="mobileHome">--%>
-
         <table align="center" width="90%">
             <h4 align="center">Motorhome information</h4>
-            <form:hidden path="id"/>
+            <form:hidden path="mobileHome.id"/>
             <tr>
                 <td align="center">Type from 3 to 15 letters</td>
                 <td align="center">Brand from 3 to 15 letters</td>
                 <td align="center">Model from 3 to 15 letters</td>
                 <td align="center">Vin from 3 to 30 characters</td>
-                <td align="center">Year of release: 1999</td>
+                <td align="center">Year of release-sample:1999</td>
                 <td align="center">Lisense plate from 3 to 11 characters</td>
             </tr>
             <tr>
@@ -81,6 +79,5 @@
             </tr>
         </table>
     </form:form>
-<%--</form:form>--%>
 </body>
 </html>

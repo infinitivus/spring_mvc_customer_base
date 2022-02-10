@@ -33,6 +33,11 @@
             <td align="center"><input type="submit" value="Save" size="10"
                                       onclick="window.location.href='${saveSpareParts}'"/></td>
         </tr>
+        <tr>
+            <td align="center"><form:errors cssStyle="color: red" path="nameSparePart"/></td>
+            <td align="center"><form:errors cssStyle="color: red" path="article"/></td>
+            <td align="center"><form:errors cssStyle="color: red" path="costPart"/></td>
+        </tr>
     </table>
 </form:form>
 <br>

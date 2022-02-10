@@ -47,11 +47,17 @@
             <th>Apply</th>
         </tr>
         <tr>
-            <td align="left"><form:input path="nameTheWork" size="120"/></td>
-            <td align="center"><form:input path="master" size="10"/></td>
-            <td align="center"><form:input path="costWork" size="6"/></td>
-            <td align="center"><form:input path="date" size="10"/></td>
+            <td align="left"><form:input path="nameTheWork" placeholder="100 letters max" size="120"/></td>
+            <td align="center"><form:input path="master" placeholder="10 letter max" size="10"/></td>
+            <td align="center"><form:input path="costWork" placeholder="9 dig max" size="6"/></td>
+            <td align="center"><form:input path="date" placeholder="01.01.1999" size="10"/></td>
             <td align="center"><input type="submit" value="Add" size="4"/></td>
+        </tr>
+        <tr>
+            <td align="center"><form:errors cssStyle="color: red" path="nameTheWork"/></td>
+            <td align="center"><form:errors cssStyle="color: red" path="master"/></td>
+            <td align="center"><form:errors cssStyle="color: red" path="costWork"/></td>
+            <td align="center"><form:errors cssStyle="color: red" path="date"/></td>
         </tr>
     </table>
 </form:form>
