@@ -70,35 +70,44 @@ public class SecurityController {
 
     @RequestMapping(value = "/adminPanel/editUser", method = RequestMethod.GET)
     public String editUser(@RequestParam("userId") Long id, Model model) {
-        UserData user = userService.getUser(id);
-        List<UserRole> listRoles = userService.listRoles();
-        model.addAttribute("user", user);
-        model.addAttribute("role", listRoles);
+        UserData editUser = userService.getUser(id);
+        model.addAttribute("userForm", editUser);
+        model.addAttribute("userRole", new UserRole());
         return "view_security/user_form_edit";
     }
 
     @RequestMapping(value = "/adminPanel/saveEditedUser", method = RequestMethod.POST)
-    public String saveEditedUser(UserData user) {
-        userService.saveUser(user);
+    public String saveEditedUser(@ModelAttribute("userForm") UserData userForm, BindingResult bindingResult,
+                                 @ModelAttribute("userRole") UserRole userRole) {
+        userForm.clearRole();
+        userService.saveUser(userForm,userRole.getRole());
         return "redirect:/adminPanel";
     }
 
     @RequestMapping(value = "/adminPanel/addUser", method = RequestMethod.GET)
     public String addNewUser(Model model) {
         model.addAttribute("userForm", new UserData());
-        List<UserRole> listRoles = userService.listRoles();
-        model.addAttribute("listRoles", listRoles);
+        model.addAttribute("userRole", new UserRole());
         return "view_security/user_form_new";
     }
 
     @RequestMapping(value = "/adminPanel/saveNewUser", method = RequestMethod.POST)
-    public String saveNewUser(@ModelAttribute("userForm") UserData userForm, BindingResult bindingResult) {
+    public String saveNewUser(@ModelAttribute("userForm") UserData userForm, BindingResult bindingResult,
+                              @ModelAttribute("userRole") UserRole userRole) {
         userValidator.validate(userForm, bindingResult);
         if (bindingResult.hasErrors()) {
             return "view_security/user_form_new";
+        } else {
+            userService.encoder(userForm);
+            userService.saveUser(userForm,userRole.getRole());
+            return "redirect:/adminPanel";
         }
-        userService.encoder(userForm);
-        userService.saveUser(userForm);
+    }
+
+    @RequestMapping(value = "/adminPanel/deleteUser")
+    public String deleteUser(@RequestParam("userId") Long id){
+        userService.deleteUser(id);
+        System.out.println(id);//////////////////////////////////////////
         return "redirect:/adminPanel";
     }
 }

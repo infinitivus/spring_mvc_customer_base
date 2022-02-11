@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 public class UserServiceImpl implements IUserService {
 
@@ -24,7 +25,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public boolean verificationSchema() {
-        List<UserData> allUser = userRepository.findAll();
+        List<UserData> allUser = listAllUser();
         if (allUser.isEmpty()) {
             return true;
         } else {
@@ -66,24 +67,21 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public List<UserRole> listRoles() {
-        return roleRepository.findAll();
-    }
-
-    @Override
-    public void saveUser(UserData user) {
-        // при сохранении в бд выдается ошибка
-//        org.springframework.dao.InvalidDataAccessApiUsageException: org.hibernate.TransientObjectException:
-//        object references an unsaved transient instance - save the transient instance before flushing:
-//        com.infinitivus.project.entity.security_entity.UserRole; nested exception is java.lang.IllegalStateException:
-//        org.hibernate.TransientObjectException:
-//        object references an unsaved transient instance - save the transient instance before flushing:
-//        com.infinitivus.project.entity.security_entity.UserRole
-        System.out.println(user);//////////////////////////////////////////////
+    public void saveUser(UserData user, String userRole) {
+        UserRole role = roleRepository.findByRole(userRole);
+        user.addRole(role);
         userRepository.save(user);
     }
 
     public void encoder(UserData user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        System.out.println("repo "+id);
+        UserData userData = getUser(id);
+        System.out.println(userData);
+        userRepository.delete(userData);
     }
 }

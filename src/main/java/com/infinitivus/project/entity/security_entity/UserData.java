@@ -21,13 +21,17 @@ public class UserData {
     @Transient
     private String passwordConfirm;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(name = "userdata_userrole", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<UserRole> roles = new HashSet<>();
 
     public void addRole(UserRole role) {
         this.roles.add(role);
+    }
+
+    public void clearRole(){
+        roles.clear();
     }
 
     public Long getId() {

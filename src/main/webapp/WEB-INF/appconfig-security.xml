@@ -9,7 +9,7 @@
 
     <http auto-config="true">
         <intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/showAllPerson" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/showAllPerson" access="hasAnyRole('ROLE_ADMIN','ROLE_MASTER','ROLE_MANAGER')"/>
         <form-login login-page="/login" default-target-url="/showAllPerson"
                     authentication-failure-url="/login?error" username-parameter="username"
                     password-parameter="password"/>

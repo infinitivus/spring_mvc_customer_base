@@ -49,4 +49,5 @@ public class UserRole {
     public String toString() {
         return role;
     }
+
 }
