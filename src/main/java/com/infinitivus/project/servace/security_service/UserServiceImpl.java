@@ -80,8 +80,9 @@ public class UserServiceImpl implements IUserService {
     @Override
     public void deleteUser(Long id) {
         System.out.println("repo "+id);
-        UserData userData = getUser(id);
-        System.out.println(userData);
-        userRepository.delete(userData);
+        UserData user = getUser(id);
+        user.clearRole();
+        userRepository.save(user);
+        userRepository.delete(user);
     }
 }
