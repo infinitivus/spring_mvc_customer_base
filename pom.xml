@@ -103,6 +103,13 @@
             <version>${logback.version}</version>
         </dependency>
 
+<!-- скрывает элементы управления от пользователей с несоответствующими ролями-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>4.0.2.RELEASE</version>
+        </dependency>
+
 <!--        &lt;!&ndash; https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api &ndash;&gt;-->
 <!--        <dependency>-->
 <!--            <groupId>javax.servlet</groupId>-->

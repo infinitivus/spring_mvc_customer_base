@@ -12,8 +12,8 @@
         <intercept-url pattern="/addNewPersonData" access="hasAnyRole('ROLE_ADMIN','ROLE_MASTER','ROLE_MANAGER')"/>
         <intercept-url pattern="/fullInfoPerson" access="hasAnyRole('ROLE_ADMIN','ROLE_MASTER','ROLE_MANAGER')"/>
         <intercept-url pattern="/updateInfoPerson" access="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')"/>
-        <intercept-url pattern="/deleteInfoPerson" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url access="hasRole('ROLE_ADMIN')" pattern="/deleteInfoPerson" />
+        <intercept-url access="hasRole('ROLE_ADMIN')" pattern="/admin/**" />
 
 
 
