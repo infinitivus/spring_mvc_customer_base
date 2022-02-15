@@ -1,8 +1,14 @@
-<h1 align="center">CustomerBase</h1>
-<p align="center">Общее описание программы:</p>
+<h1 align="center">spring_mvc_customer_base</h1>
+<p align="center">Используемые технологии:</p>
+Java
+Spring MVC
+Spring Security
+Hibernate 
+Hibernate Validation
+
 Программа предназначена для ремонтных мастерских любого типа, автосервисов и учреждений, где необходим учет клиентов.
 <br></br>
-<p align="center">Возможности программы:V1.0-V1.9</p>
+<p align="center">Возможности программы:V1.0</p>
 <br>:white_check_mark: Ручной ввод данных о клиентах</br>
 <br>:white_check_mark: Поддержка русского и английского языков</br>
 <br>:white_check_mark: Сохранение информации в локальном файле на компьютере или в базе данных на удаленном сервере</br>
