@@ -43,41 +43,41 @@
             <td align="center"><form:errors cssStyle="color: red" path="birthday"/></td>
         </tr>
     </table>
-        <table align="center" width="90%">
-            <h4 align="center">Motorhome information</h4>
-            <form:hidden path="mobileHome.id"/>
-            <tr>
-                <td align="center">Type from 3 to 15 letters</td>
-                <td align="center">Brand from 3 to 15 letters</td>
-                <td align="center">Model from 3 to 15 letters</td>
-                <td align="center">Vin from 3 to 30 characters</td>
-                <td align="center">Year of release-sample:1999</td>
-                <td align="center">Lisense plate from 3 to 11 characters</td>
-            </tr>
-            <tr>
-                <td align="center"><form:input path="mobileHome.type" placeholder="Type:optional"/></td>
-                <td align="center"><form:input path="mobileHome.brand" placeholder="Brand:optional"/></td>
-                <td align="center"><form:input path="mobileHome.model" placeholder="Model:optional"/></td>
-                <td align="center"><form:input path="mobileHome.vin" placeholder="Vin:optional"/></td>
-                <td align="center"><form:input path="mobileHome.yearOfRelease" placeholder="Year of release:optional"/></td>
-                <td align="center"><form:input path="mobileHome.licensePlate" placeholder="Lisense plate:optional"/></td>
-            </tr>
-            <tr>
-                <td align="center"><form:errors path="mobileHome.type"/></td>
-                <td align="center"><form:errors path="mobileHome.brand"/></td>
-                <td align="center"><form:errors path="mobileHome.model"/></td>
-                <td align="center"><form:errors path="mobileHome.vin"/></td>
-                <td align="center"><form:errors path="mobileHome.yearOfRelease"/></td>
-                <td align="center"><form:errors path="mobileHome.licensePlate"/></td>
-            </tr>
-        </table>
-        <br>
-        <table align="center" width="90%">
-            <tr>
-                <td align="left"><input type="submit" value="Save"
-                                        onclick="window.location.href='${savePersonData}'"/></td>
-            </tr>
-        </table>
-    </form:form>
+    <table align="center" width="90%">
+        <h4 align="center">Motorhome information</h4>
+        <form:hidden path="mobileHome.id"/>
+        <tr>
+            <td align="center">Type from 3 to 15 letters</td>
+            <td align="center">Brand from 3 to 15 letters</td>
+            <td align="center">Model from 3 to 15 letters</td>
+            <td align="center">Vin from 3 to 30 characters</td>
+            <td align="center">Year of release-sample:1999</td>
+            <td align="center">Lisense plate from 3 to 11 characters</td>
+        </tr>
+        <tr>
+            <td align="center"><form:input path="mobileHome.type" placeholder="Type:optional"/></td>
+            <td align="center"><form:input path="mobileHome.brand" placeholder="Brand:optional"/></td>
+            <td align="center"><form:input path="mobileHome.model" placeholder="Model:optional"/></td>
+            <td align="center"><form:input path="mobileHome.vin" placeholder="Vin:optional"/></td>
+            <td align="center"><form:input path="mobileHome.yearOfRelease" placeholder="Year of release:optional"/></td>
+            <td align="center"><form:input path="mobileHome.licensePlate" placeholder="Lisense plate:optional"/></td>
+        </tr>
+        <tr>
+            <td align="center"><form:errors cssStyle="color: red" path="mobileHome.type"/></td>
+            <td align="center"><form:errors cssStyle="color: red" path="mobileHome.brand"/></td>
+            <td align="center"><form:errors cssStyle="color: red" path="mobileHome.model"/></td>
+            <td align="center"><form:errors cssStyle="color: red" path="mobileHome.vin"/></td>
+            <td align="center"><form:errors cssStyle="color: red" path="mobileHome.yearOfRelease"/></td>
+            <td align="center"><form:errors cssStyle="color: red" path="mobileHome.licensePlate"/></td>
+        </tr>
+    </table>
+    <br>
+    <table align="center" width="90%">
+        <tr>
+            <td align="left"><input type="submit" value="Save"
+                                    onclick="window.location.href='${savePersonData}'"/></td>
+        </tr>
+    </table>
+</form:form>
 </body>
 </html>

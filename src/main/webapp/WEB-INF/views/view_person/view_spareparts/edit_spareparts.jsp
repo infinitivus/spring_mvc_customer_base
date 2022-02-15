@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" \>
-    <title>add_update data</title>
+    <title>edit spareparts</title>
 </head>
 <body>
 <form:form action="saveSpareParts" modelAttribute="spareParts">
@@ -15,14 +15,20 @@
         <tr>
             <th align="center" width="70%">Name spare part</th>
             <th align="center" width="10%">Article</th>
-            <th align="center" width="10%">Cost spare part</th>
+            <th align="center" width="10%">Cost</th>
             <th align="center" width="10%">Apply</th>
         </tr>
         <tr>
-            <td align="center" width="80%"><form:input path="nameSparePart" size="130"/></td>
-            <td align="center" width="10%"><form:input path="article" size="10"/></td>
-            <td align="center" width="10%"><form:input path="costPart" size="10"/></td>
-            <td align="center" width="10%"> <input type="submit" value="Save" size="10" onclick="window.location.href='${saveSpareParts}'"/></td>
+            <td align="center" width="80%"><form:input path="nameSparePart" size="130" placeholder="100 letters max"/></td>
+            <td align="center" width="10%"><form:input path="article" size="10" placeholder="10 letter max"/></td>
+            <td align="center" width="10%"><form:input path="costPart" size="10" placeholder="9 dig max"/></td>
+            <td align="center" width="10%"> <input type="submit" value="Edit" size="10"
+                                                   onclick="window.location.href='${saveSpareParts}'"/></td>
+        </tr>
+        <tr>
+            <td align="center"><form:errors cssStyle="color: red" path="nameSparePart"/></td>
+            <td align="center"><form:errors cssStyle="color: red" path="article"/></td>
+            <td align="center"><form:errors cssStyle="color: red" path="costPart"/></td>
         </tr>
     </table>
 </form:form>

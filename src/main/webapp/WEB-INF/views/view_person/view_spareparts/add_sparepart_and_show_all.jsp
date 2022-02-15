@@ -16,7 +16,7 @@
                                 onclick="window.location.href='${backToList}'"/></td>
     </tr>
 </table>
-<form:form action="saveSpareParts" modelAttribute="spareParts">
+<form:form action="showAllSpareParts/saveSpareParts" modelAttribute="spareParts">
     <form:hidden path="id"/>
     <table align="center" width="90%" border="1">
         <h3 align="center">New spare part</h3>
@@ -27,9 +27,9 @@
             <th align="center" width="10%">Apply</th>
         </tr>
         <tr>
-            <td align="center"><form:input path="nameSparePart" size="130"/></td>
-            <td align="center"><form:input path="article" size="10"/></td>
-            <td align="center"><form:input path="costPart" size="10"/></td>
+            <td align="center"><form:input path="nameSparePart" placeholder="100 letters max" size="130"/></td>
+            <td align="center"><form:input path="article" size="10" placeholder="10 letter max"/></td>
+            <td align="center"><form:input path="costPart" size="10" placeholder="9 dig max"/></td>
             <td align="center"><input type="submit" value="Save" size="10"
                                       onclick="window.location.href='${saveSpareParts}'"/></td>
         </tr>
@@ -50,10 +50,10 @@
         <th>Apply</th>
     </tr>
     <c:forEach var="parts" items="${allParts}">
-        <c:url var="editPart" value="/editSpareParts">
+        <c:url var="editPart" value="/showAllSpareParts/editSpareParts">
             <c:param name="partsId" value="${parts.id}"/>
         </c:url>
-        <c:url var="deletePart" value="/deleteSpareParts">
+        <c:url var="deletePart" value="/showAllSpareParts/deleteSpareParts">
             <c:param name="partsId" value="${parts.id}"/>
         </c:url>
         <tr>

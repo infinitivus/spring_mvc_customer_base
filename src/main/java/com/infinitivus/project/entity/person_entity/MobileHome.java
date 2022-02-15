@@ -47,8 +47,7 @@ public class MobileHome {
     public MobileHome() {
     }
 
-    public MobileHome(Integer id, String type, String brand, String model, String vin, String yearOfRelease, String licensePlate, Person homePerson) {
-        this.id = id;
+    public MobileHome(String type, String brand, String model, String vin, String yearOfRelease, String licensePlate, Person homePerson) {
         this.type = type;
         this.brand = brand;
         this.model = model;
@@ -137,5 +136,21 @@ public class MobileHome {
 
     public void setRepairWorkList(Set<RepairWork> repairWorkList) {
         this.repairWorkList = repairWorkList;
+    }
+
+
+    @Override
+    public String toString() {
+        return "MobileHome{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", vin='" + vin + '\'' +
+                ", yearOfRelease='" + yearOfRelease + '\'' +
+                ", licensePlate='" + licensePlate + '\'' +
+                ", homePerson=" + homePerson +
+                ", repairWorkList=" + repairWorkList +
+                '}';
     }
 }

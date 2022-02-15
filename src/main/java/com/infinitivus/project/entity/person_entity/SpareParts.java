@@ -24,7 +24,7 @@ public class SpareParts {
     @Column(name = "cost_part")
     private int costPart;
 
-    @Size(max = 15, message = "Error!")
+    @Size(max = 10, message = "Error!")
     @Column(name = "article")
     private String article;
 

@@ -4,6 +4,7 @@ import com.infinitivus.project.entity.person_entity.RepairWork;
 import com.infinitivus.project.entity.person_entity.SpareParts;
 import com.infinitivus.project.servace.person_service.spareparts_service.ISparePartsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,7 +32,7 @@ public class SparePartsController {
         return "view_person/view_spareparts/add_sparepart_and_show_all";
     }
 
-    @RequestMapping("/saveSpareParts")
+    @RequestMapping("/showAllSpareParts/saveSpareParts")
     public String saveSpareParts(@Valid @ModelAttribute("spareParts") SpareParts spareParts, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "view_person/view_spareparts/add_sparepart_and_show_all";
@@ -41,20 +42,24 @@ public class SparePartsController {
         }
     }
 
-    @RequestMapping("/editSpareParts")
+    @RequestMapping("/showAllSpareParts/editSpareParts")
     public String editSpareParts(@RequestParam("partsId") Integer id, Model model) {
         SpareParts spareParts = sparePartsService.getSpareParts(id);
         model.addAttribute("spareParts", spareParts);
         return "view_person/view_spareparts/edit_spareparts";
     }
 
-    @RequestMapping("/deleteSpareParts")
+    @RequestMapping("/showAllSpareParts/deleteSpareParts")
     public String deleteSpareParts(@RequestParam("partsId") Integer id) {
-        sparePartsService.deleteSpareParts(id);
+        try {
+            sparePartsService.deleteSpareParts(id);
+        }catch (DataIntegrityViolationException e){
+            return "redirect:/showAllSpareParts"; // обработать правильно исключение с выводом информации о невозможности удаления, т.к. запись используется
+        }
         return "redirect:/showAllSpareParts";
     }
 
-    @RequestMapping("/addSparePartToWork")
+    @RequestMapping("/showAllSpareParts/addSparePartToWork")
     public String addSparePart(@RequestParam("workId") Integer workId, Model model) {
         RepairWork repairWork = sparePartsService.getRepairWork(workId);
         model.addAttribute("repairWork", repairWork);
@@ -68,18 +73,18 @@ public class SparePartsController {
         return "view_person/view_spareparts/add_sparepart_to_work";
     }
 
-    @RequestMapping("/assignSparePartToWork")
+    @RequestMapping("/addSparePartToWork/assignSparePartToWork")
     public String assignSparePartToWork(@RequestParam("workId") Integer workId,
                                         @Valid @ModelAttribute("partToWork") SpareParts spareParts) {
         Integer partId = spareParts.getId();
         sparePartsService.assignPartToWork(workId, partId);
-        return "redirect:/addSparePartToWork?workId=" + workId;
+        return "redirect:/showAllSpareParts/addSparePartToWork?workId=" + workId;
     }
 
-    @RequestMapping("/unplugSparePartToWork")
+    @RequestMapping("/addSparePartToWork/unplugSparePartToWork")
     public String unplugSparePartToWork(@RequestParam("workId") Integer workId,
                                         @RequestParam("partId") Integer partId) {
         sparePartsService.unplugPartToWork(workId, partId);
-        return "redirect:/addSparePartToWork?workId=" + workId;
+        return "redirect:/showAllSpareParts/addSparePartToWork?workId=" + workId;
     }
 }

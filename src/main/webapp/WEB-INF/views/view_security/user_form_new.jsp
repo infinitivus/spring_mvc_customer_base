@@ -12,10 +12,10 @@
 <td align="left"><input type="button" value="<- Back to the list"
                         onclick="window.location.href='${backToList}'"/></td>
 <form:form action="saveNewUser" modelAttribute="userForm">
-    <h3 align="center">Добавить информацию о пользователе</h3>
+    <h3 align="center">Add user information</h3>
     <br>
     <table align="center" width="90%">
-        <h3 align="center">Информация о авторизации</h3>
+        <h3 align="center">Authorization Information</h3>
         <tr>
             <th align="center">User name</th>
             <th align="center">Password</th>
@@ -23,9 +23,9 @@
             <th align="center">Roles</th>
         </tr>
         <tr>
-            <td align="center"><form:input path="username"/></td>
-            <td align="center"><form:input path="password" /> </td>
-            <td align="center"><form:input path="passwordConfirm"/></td>
+            <td align="center"><form:input path="username" placeholder="at least 4 letters"/></td>
+            <td align="center"><form:input path="password" placeholder="at least 4 letters"/> </td>
+            <td align="center"><form:input path="passwordConfirm" placeholder="at least 4 letters"/></td>
             <td align="center">
     <form:form modelAttribute="userRole">
     ADMIN<form:radiobutton path="role" value="ROLE_ADMIN" id="1"/>

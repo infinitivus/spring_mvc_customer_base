@@ -67,7 +67,7 @@
         <c:param name="workId" value="${repair.id}"/>
         <c:param name="mobileHomeId" value="${mobileHome.id}"/>
     </c:url>
-    <c:url var="addPart" value="/addSparePartToWork">
+    <c:url var="addPart" value="/showAllSpareParts/addSparePartToWork">
         <c:param name="workId" value="${repair.id}"/>
     </c:url>
     <table bgcolor="white" align="center" width="90%" border="1">

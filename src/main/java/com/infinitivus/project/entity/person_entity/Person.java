@@ -102,4 +102,18 @@ public class Person {
     public void setMobileHome(MobileHome mobileHome) {
         this.mobileHome = mobileHome;
     }
+
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", surname='" + surname + '\'' +
+                ", name='" + name + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", mobileHome=" + mobileHome +
+                '}';
+    }
 }

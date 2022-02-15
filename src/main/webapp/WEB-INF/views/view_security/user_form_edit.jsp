@@ -27,7 +27,7 @@
             <th align="center">Action</th>
         </tr>
         <tr>
-            <td align="center"><form:input path="username"/></td>
+            <td align="center"><form:input path="username" placeholder="at least 4 letters"/></td>
             <td align="center">
 
                 <form:form modelAttribute="userRole">

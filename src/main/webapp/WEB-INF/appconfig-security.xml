@@ -8,16 +8,11 @@
 		http://www.springframework.org/schema/security/spring-security.xsd">
 
     <http auto-config="true">
-        <intercept-url pattern="/showAllPerson" access="hasAnyRole('ROLE_ADMIN','ROLE_MASTER','ROLE_MANAGER')"/>
-        <intercept-url pattern="/addNewPersonData" access="hasAnyRole('ROLE_ADMIN','ROLE_MASTER','ROLE_MANAGER')"/>
-        <intercept-url pattern="/fullInfoPerson" access="hasAnyRole('ROLE_ADMIN','ROLE_MASTER','ROLE_MANAGER')"/>
+        <intercept-url pattern="/addRepairWorkPerson" access="hasAnyRole('ROLE_ADMIN','ROLE_MASTER')"/>
+        <intercept-url pattern="/showAllSpareParts/**" access="hasAnyRole('ROLE_ADMIN','ROLE_MASTER')"/>
         <intercept-url pattern="/updateInfoPerson" access="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')"/>
-        <intercept-url access="hasRole('ROLE_ADMIN')" pattern="/deleteInfoPerson" />
-        <intercept-url access="hasRole('ROLE_ADMIN')" pattern="/admin/**" />
-
-
-
-
+        <intercept-url pattern="/deleteInfoPerson" access="hasRole('ROLE_ADMIN')"  />
+        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"  />
         <form-login login-page="/login" default-target-url="/showAllPerson"
                     authentication-failure-url="/login?error" username-parameter="username"
                     password-parameter="password"/>

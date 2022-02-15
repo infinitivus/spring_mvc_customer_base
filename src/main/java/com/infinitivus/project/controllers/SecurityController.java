@@ -107,7 +107,6 @@ public class SecurityController {
     @RequestMapping(value = "/adminPanel/deleteUser")
     public String deleteUser(@RequestParam("userId") Long id){
         userService.deleteUser(id);
-        System.out.println(id);//////////////////////////////////////////
         return "redirect:/adminPanel";
     }
 }

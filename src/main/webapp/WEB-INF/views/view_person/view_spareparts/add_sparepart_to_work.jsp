@@ -9,7 +9,7 @@
     <title>Add spare part</title>
 </head>
 <c:url var="backToList" value="/showAllPerson"/>
-<c:url var="assignSparePart" value="/assignSparePartToWork">
+<c:url var="assignSparePart" value="/addSparePartToWork/assignSparePartToWork">
     <c:param name="workId" value="${repairWork.id}"/>
 </c:url>
 <body>
@@ -54,7 +54,7 @@
         </tr>
         <c:forEach var="parts" items="${repairWork.sparePartsList}">
             <form:hidden path="id"/>
-            <c:url var="deleteSparePart" value="/unplugSparePartToWork">
+            <c:url var="deleteSparePart" value="/addSparePartToWork/unplugSparePartToWork">
                 <c:param name="workId" value="${repairWork.id}"/>
                 <c:param name="partId" value="${parts.id}"/>
             </c:url>
