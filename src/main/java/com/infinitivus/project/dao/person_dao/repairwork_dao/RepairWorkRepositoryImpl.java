@@ -7,31 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import java.util.List;
 
 @Repository
 public class RepairWorkRepositoryImpl implements IRepairWorkRepository {
 
     @Autowired
     private EntityManager entityManager;
-
-    @Override
-    public List<RepairWork> getAllRepairWork() {
-        Query query = entityManager.createQuery("from RepairWork", RepairWork.class);
-        List<RepairWork> allRepairWork = query.getResultList();
-        return allRepairWork;
-    }
-
-    @Override
-    public void saveRepairWork(RepairWork repairWork) {
-        entityManager.merge(repairWork);
-    }
-
-    @Override
-    public RepairWork getRepairWork(Integer id) {
-        RepairWork repairWork = entityManager.find(RepairWork.class, id);
-        return repairWork;
-    }
 
     @Override
     public void deleteRepairWork(Integer id) {

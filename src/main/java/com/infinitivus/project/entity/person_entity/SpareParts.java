@@ -40,12 +40,12 @@ public class SpareParts {
         this.article = article;
     }
 
-    public void addRepairWorkToSpareParts(RepairWork repairWork) {
-        if (repairWorkList == null) {
-            repairWorkList = new ArrayList<>();
-        }
-        repairWorkList.add(repairWork);
-    }
+//    public void addRepairWorkToSpareParts(RepairWork repairWork) {
+//        if (repairWorkList == null) {
+//            repairWorkList = new ArrayList<>();
+//        }
+//        repairWorkList.add(repairWork);
+//    }
 
     public Integer getId() {
         return id;

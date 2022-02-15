@@ -7,31 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service
 public class RepairWorkServiceImpl implements IRepairWorkService {
 
     @Autowired
     private IRepairWorkRepository repairWorkRepository;
-
-    @Override
-    @Transactional
-    public List<RepairWork> allRepairWork() {
-        return repairWorkRepository.getAllRepairWork();
-    }
-
-    @Override
-    @Transactional
-    public void saveRepairWork(RepairWork repairWork) {
-        repairWorkRepository.saveRepairWork(repairWork);
-    }
-
-    @Override
-    @Transactional
-    public RepairWork getRepairWork(Integer id) {
-        return repairWorkRepository.getRepairWork(id);
-    }
 
     @Override
     @Transactional

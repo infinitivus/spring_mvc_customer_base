@@ -30,7 +30,6 @@ public class PersonServiceImpl implements IPersonService {
     @Transactional
     public Person getPerson(Integer id) {
         return iPersonRepository.getPerson(id);
-
     }
 
     @Override

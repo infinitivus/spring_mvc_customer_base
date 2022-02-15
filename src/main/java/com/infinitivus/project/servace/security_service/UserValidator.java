@@ -1,7 +1,6 @@
 package com.infinitivus.project.servace.security_service;
 
 import com.infinitivus.project.entity.security_entity.UserData;
-import com.infinitivus.project.servace.security_service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -24,7 +23,7 @@ public class UserValidator implements Validator {
         UserData user = (UserData) o;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
-        if (user.getUsername().length() < 4 || user.getUsername().length() > 10) {
+        if (user.getUsername().length() < 4 || user.getUsername().length() > 20) {
             errors.rejectValue("username", "Size.userForm.username");
         }
         if (userService.findByUsername(user.getUsername()) != null) {
@@ -32,7 +31,7 @@ public class UserValidator implements Validator {
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
-        if (user.getPassword().length() < 4 || user.getPassword().length() > 10) {
+        if (user.getPassword().length() < 4 || user.getPassword().length() > 20) {
             errors.rejectValue("password", "Size.userForm.password");
         }
 

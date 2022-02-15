@@ -64,7 +64,6 @@
                 <td align="center" width="7%">${parts.costPart}</td>
                 <td align="center" width="4%"><input type="button" value="Delete"
                                                      onclick="window.location.href='${deleteSparePart}'"/>
-
             </tr>
         </c:forEach>
     </table>
