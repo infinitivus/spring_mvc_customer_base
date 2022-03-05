@@ -31,8 +31,7 @@ public class RepairWorkController {
     public String saveRepairWork(@RequestParam("mobileHomeId") Integer homeId,
                                  @Valid @ModelAttribute("newRepairWork") RepairWork repairWork, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
-            return"redirect://addRepairWorkPerson?mobileHomeId="+homeId;
-//            return "view_person/view_repairwork/add_repairwork";// надо придумать как со ссылкой отправить homeId
+           return"redirect://addRepairWorkPerson?mobileHomeId="+homeId; // ВЫВОД ОШИБОК ЗАПОЛНЕНИЯ
         }else
         repairWorkService.saveMobileHome(homeId, repairWork);
         return "redirect:/addRepairWorkPerson?mobileHomeId=" + homeId;

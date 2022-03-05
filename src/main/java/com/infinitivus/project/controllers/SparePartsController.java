@@ -54,7 +54,7 @@ public class SparePartsController {
         try {
             sparePartsService.deleteSpareParts(id);
         }catch (DataIntegrityViolationException e){
-            return "redirect:/showAllSpareParts"; // обработать правильно исключение с выводом информации о невозможности удаления, т.к. запись используется
+            return "redirect:/showAllSpareParts";
         }
         return "redirect:/showAllSpareParts";
     }
