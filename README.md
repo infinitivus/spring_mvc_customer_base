@@ -1,14 +1,14 @@
-<h1 align="center">spring_mvc_customer_base</h1>
-<p align="center">Используемые технологии:</p>
-xml configuration <br>
-Java 1.8<br>
-Spring MVC 4.2.0.RELEASE<br>
-Spring Security 4.0.2.RELEASE<br>
-Spring data jpa 1.8.2.RELEASE<br>
-Hibernate 4.3.11.Final<br>
-Hibernate Validation 6.2.0.Final<br>
-Mysql connector 8.0.27 <br>
-Logback 1.1.3<br>
+# spring_mvc_customer_base
+## Используемые технологии:
+* xml configuration <br>
+* Java 1.8<br>
+* Spring MVC 4.2.0.RELEASE<br>
+* Spring Security 4.0.2.RELEASE<br>
+* Spring data jpa 1.8.2.RELEASE<br>
+* Hibernate 4.3.11.Final<br>
+* Hibernate Validation 6.2.0.Final<br>
+* Mysql connector 8.0.27 <br>
+* Logback 1.1.3<br>
 <br>
 Программа предназначена для ремонтных мастерских любого типа, автосервисов и учреждений, где необходим учет клиентов,ремонтных работ и запчастей.
 <br></br>
