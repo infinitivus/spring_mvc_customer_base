@@ -1,6 +1,6 @@
 # spring_mvc_customer_base
 ## Используемые технологии:
-* xml configuration <br>
+* Xml configuration <br>
 * Java 1.8<br>
 * Spring MVC 4.2.0.RELEASE<br>
 * Spring Security 4.0.2.RELEASE<br>
