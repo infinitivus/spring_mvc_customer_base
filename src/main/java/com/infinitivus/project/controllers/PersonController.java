@@ -27,33 +27,19 @@ public class PersonController {
         return "view_person/show_all_person";
     }
 
-    //-------------------------------------------------------------
-    // Не работает валидация class MobileHome. Сейчас @Pattern в MobileHome закоментированы. Пробовал создавать
-    // еще одну <form:form modelAttribute в add_new_person_data.jsp, не работает. Выдает ошибку:
-    //ExceptionHandlerExceptionResolver - Resolving exception from handler
-    // [public java.lang.String com.infinitivus.project.controllers.PersonController.savePerson
-    // (com.infinitivus.project.entity.person_entity.Person,org.springframework.validation.BindingResult)]:
-    // javax.validation.ConstraintViolationException: Validation failed for classes [com.infinitivus.project.entity.person_entity.MobileHome]
-    // during persist time for groups [javax.validation.groups.Default, ]
-    // Предполагаю что это из-за того что я обращаюсь к классу MobileHome через поле класса Person, побороть пока не могу самостоятельно.
-    // Чтобы получить ошибку надо расскоментировать @Pattern в классе MobileHome, на странице showAllPerson кликнуть Add Person,
-    // заполнить поля и при сохранении выходит exception
-
     @RequestMapping("/addNewPersonData")
     public String addNewPersonData(Model model) {
         model.addAttribute("person",new Person());
-//        model.addAttribute("mobileHome",new MobileHome());
+        model.addAttribute("mobileHome",new MobileHome());
         return "view_person/add_new_person_data";
     }
 
     @RequestMapping("/savePersonData")
-    public String savePerson(@Valid @ModelAttribute("person") Person person, BindingResult bindingPerson)
-//                             @Valid @ModelAttribute("mobileHome") MobileHome mobileHome,BindingResult bindingMobileHome)
+    public String savePerson(@Valid @ModelAttribute("person") Person person, BindingResult bindingPerson,
+                             @Valid @ModelAttribute("mobileHome") MobileHome mobileHome,BindingResult bindingMobileHome)
     {
-        System.out.println(person);
-//        System.out.println(mobileHome);
-        if (bindingPerson.hasErrors())
-//               || bindingMobileHome.hasErrors())
+        if (bindingPerson.hasErrors() ||
+               bindingMobileHome.hasErrors())
         {
             return "view_person/add_new_person_data";
         } else {
@@ -61,7 +47,6 @@ public class PersonController {
             return "redirect:/showAllPerson";
         }
     }
-//-----------------------------------------------------------------------------------------------------
 
     @RequestMapping("/fullInfoPerson")
     public String fullInfoPerson(@RequestParam("infoPersId") Integer id, Model model) {
